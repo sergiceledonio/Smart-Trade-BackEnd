@@ -1,0 +1,13 @@
+package codebusters.smarttradebackend;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SmartTradeBackEndApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SmartTradeBackEndApplication.class, args);
+    }
+
+}
