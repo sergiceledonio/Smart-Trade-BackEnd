@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("api/v1/users")
 public class UserController {
 
     @Autowired
     private UserService service;
 
-    @GetMapping
+    @GetMapping("/getUsers")
     public ArrayList<User> getUsers() {
-        return this.service.getUsers();
+        return (ArrayList<User>) service.getUsers();
     }
 }
