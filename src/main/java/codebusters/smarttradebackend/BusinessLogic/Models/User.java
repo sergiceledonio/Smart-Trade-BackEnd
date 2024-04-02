@@ -7,9 +7,17 @@ import jakarta.persistence.Id;
 public class User {
 
     @Id
+    private int id;
     private String Email;
     private String Nombre;
     private String Contrasena;
+
+    public int getId() {
+        return this.id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return this.Email;

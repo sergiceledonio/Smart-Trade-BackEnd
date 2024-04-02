@@ -20,8 +20,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Optional<User> listarId(String email) {
-        return Optional.empty();
+    public Optional<User> getUserById(String id) {
+        return data.findById(id);
     }
 
     @Override
