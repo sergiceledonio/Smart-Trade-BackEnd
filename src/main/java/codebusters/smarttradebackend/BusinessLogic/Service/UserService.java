@@ -6,7 +6,7 @@ import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -15,13 +15,13 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository data;
     @Override
-    public List<User> listar() {
-        return (List<User>) data.findAll();
+    public ArrayList<User> getUsers() {
+        return (ArrayList<User>) data.findAll();
     }
 
     @Override
-    public Optional<User> listarId(String email) {
-        return Optional.empty();
+    public Optional<User> getUserById(String id) {
+        return data.findById(id);
     }
 
     @Override
