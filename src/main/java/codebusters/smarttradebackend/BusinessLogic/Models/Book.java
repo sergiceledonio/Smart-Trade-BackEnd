@@ -1,4 +1,4 @@
-package src.main.java.codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,24 +7,14 @@ import jakarta.persistence.Column;
 
 @Entity
 public class Book extends Product {
-
-    @Id
-    private int Id;
-
-    @Column(unique = true)
-    @ManyToOne(optional = true)
-    private String Name;
-
     private String Title;
     private String Author;
     private String Saga;
     private int Edition;
     private String Description;
 
-    public Book(int Id, String Name, String Title, String Author, String Saga, int Edition, String Description) {
-        super(Id, Cif, Name, Price);
-        this.Id = Id;
-        this.Name = Name;
+    public Book(int Id, String Name, String Title, String Author, String Saga, int Edition, String Description, Seller cif, double price) {
+        super(Id, cif, Name, price);
         this.Title = Title;
         this.Author = Author;
         this.Saga = Saga;
@@ -32,20 +22,8 @@ public class Book extends Product {
         this.Description = Description;
     }
 
-    public int getId() {
-        return this.Id;
-    }
+    public Book() {
 
-    public void setId(int Id) {
-        this.Id = Id;
-    }
-
-    public String getName() {
-        return this.Name;
-    }
-
-    public void setName(String Name) {
-        this.Name = Name;
     }
 
     public String getTitle() {

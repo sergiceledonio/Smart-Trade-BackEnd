@@ -1,4 +1,4 @@
-package src.main.java.codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -8,42 +8,21 @@ import jakarta.persistence.Column;
 @Entity
 public class Tourism extends Product {
 
-    @Id
-    private int Id;
-
-    @Column(unique = true)
-    @ManyToOne(optional = true)
-    private String Name;
-
     private String Place;
     private int People;
     private String Type;
     private String Description;
 
-    public Tourism(int Id, String Name, String Place, int People, String Type, String Description) {
-        super(Id, Cif, Name, Price);
-        this.Id = Id;
-        this.Name = Name;
+    public Tourism(int Id, String Name, String Place, int People, String Type, String Description, Seller cif, double price) {
+        super(Id, cif, Name, price);
         this.Place = Place;
         this.People = People;
         this.Type = Type;
         this.Description = Description;
     }
 
-    public int getId() {
-        return this.Id;
-    }
+    public Tourism() {
 
-    public void setId(int Id) {
-        this.Id = Id;
-    }
-
-    public String getName() {
-        return this.Name;
-    }
-
-    public void setName(String Name) {
-        this.Name = Name;
     }
 
     public String getPlace() {
@@ -54,11 +33,11 @@ public class Tourism extends Product {
         this.Place = Place;
     }
 
-    public String getPeople() {
+    public int getPeople() {
         return this.People;
     }
 
-    public void setPeople(String People) {
+    public void setPeople(int People) {
         this.People = People;
     }
 

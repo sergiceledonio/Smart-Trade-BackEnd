@@ -1,9 +1,8 @@
-package src.main.java.codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 public class CreditCard {
@@ -11,20 +10,24 @@ public class CreditCard {
     @Id
     private int Id;
 
-    @Column(unique = true)
     @ManyToOne(optional = true)
-    private String Dni;
+    @JoinColumn(name="DNI")
+    private Client DNI;
 
     private String Name;
     private int Num;
-    private DateTime ExpireDate;
+    private Date ExpireDate;
 
-    public CreditCard(int Id, String Dni, String Name, int Num, DateTime CadDate) {
+    public CreditCard(int Id, Client Dni, String Name, int Num, Date CadDate) {
         this.Id = Id;
-        this.Dni = Dni;
+        this.DNI = Dni;
         this.Name = Name;
         this.Num = Num;
         this.ExpireDate = ExpireDate;
+    }
+
+    public CreditCard() {
+
     }
 
     public int getId() {
@@ -35,12 +38,12 @@ public class CreditCard {
         this.Id = Id;
     }
 
-    public String getDni() {
-        return this.Dni;
+    public Client getDni() {
+        return this.DNI;
     }
 
-    public void setDni(String Dni) {
-        this.Dni = Dni;
+    public void setDni(Client Dni) {
+        this.DNI = Dni;
     }
 
     public String getName() {
@@ -59,11 +62,11 @@ public class CreditCard {
         this.Num = Num;
     }
 
-    public DateTime getExpireDate() {
+    public Date getExpireDate() {
         return this.ExpireDate;
     }
 
-    public void setExpireDate(DateTime ExpireDate) {
-        this.CadDate = ExpireDate;
+    public void setExpireDate(Date ExpireDate) {
+        this.ExpireDate = ExpireDate;
     }
 }

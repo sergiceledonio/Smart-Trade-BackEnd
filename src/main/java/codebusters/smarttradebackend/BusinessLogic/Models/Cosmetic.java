@@ -1,4 +1,4 @@
-package src.main.java.codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -8,41 +8,21 @@ import jakarta.persistence.Column;
 @Entity
 public class Cosmetic extends Product {
 
-    @Id
-    private int Id;
-
-    @Column(unique = true)
-    @ManyToOne(optional = true)
-    private String Name;
-
     private String Color;
     private String Material;
     private String Type;
     private String Description;
 
-    public Cosmetic(int Id, String Name, String Color, String Material, String Type, String Description) {
-        super(Id, Cif, Name, Price);
-        this.Id = Id;
-        this.Name = Name;
+    public Cosmetic(int Id, String Name, String Color, String Material, String Type, String Description, Seller cif, double price) {
+        super(Id, cif, Name, price);
         this.Color = Color;
         this.Material = Material;
         this.Type = Type;
         this.Description = Description;
     }
-    public int getId() {
-        return this.Id;
-    }
 
-    public void setId(int Id) {
-        this.Id = Id;
-    }
+    public Cosmetic() {
 
-    public String getName() {
-        return this.Name;
-    }
-
-    public void setName(String Name) {
-        this.Name = Name;
     }
 
     public String getColor() {

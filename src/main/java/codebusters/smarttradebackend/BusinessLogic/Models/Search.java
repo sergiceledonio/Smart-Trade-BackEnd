@@ -1,9 +1,8 @@
-package src.main.java.codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 public class Search {
@@ -11,20 +10,24 @@ public class Search {
     @Id
     private int Id;
 
-    @Column(unique = true)
     @ManyToOne(optional = true)
-    private String Email;
+    @JoinColumn(name="Email")
+    private User Email;
 
     @Column(unique = true)
-    private DateTime Time;
+    private Date Time;
 
     private String Text;
 
-    public Search(int Id, String Email, DateTime Time, String Text) {
+    public Search(int Id, User Email, Date Time, String Text) {
         this.Id = Id;
         this.Email = Email;
         this.Time = Time;
         this.Text = Text;
+    }
+
+    public Search() {
+
     }
 
     public int getId() {
@@ -34,19 +37,19 @@ public class Search {
     public void setId() {
         this.Id = Id;
     }
-    public String getEmail() {
+    public User getEmail() {
         return this.Email;
     }
 
-    public void setEmail(String Email) {
+    public void setEmail(User Email) {
         this.Email = Email;
     }
 
-    public DateTime getTime() {
+    public Date getTime() {
         return this.Time;
     }
 
-    public void setTime(DateTime Time) {
+    public void setTime(Date Time) {
         this.Time = Time;
     }
 

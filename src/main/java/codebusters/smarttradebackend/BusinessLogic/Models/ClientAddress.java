@@ -1,4 +1,4 @@
-package src.main.java.codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,17 +7,6 @@ import jakarta.persistence.Column;
 
 @Entity
 public class ClientAddress extends Client {
-
-    @Id
-    private int Id;
-
-    @Column(unique = true)
-    @ManyToOne(optional = true)
-    private String Email;
-
-    @Column(unique = true)
-    @ManyToOne(optional = true)
-    private String Dni;
 
     @Column(unique = true)
     private int Num;
@@ -28,12 +17,9 @@ public class ClientAddress extends Client {
     private int Flat;
     private int Door;
 
-    public SellerAddress(int Id, String Email, String Dni, int Num, String City, String Street, int Number, int Flat,
-                            int Door) {
-        super(Id, Email, Cif, Iban);
-        this.Id = Id;
-        this.Email = Email;
-        this.Dni = Dni;
+    public ClientAddress(int Id, String Email, String Dni, int Num, String City, String Street, int Number, int Flat,
+                            int Door, String Name, String Password) {
+        super(Id, Email, Dni, Name, Password);
         this.Num = Num;
         this.City = City;
         this.Street = Street;
@@ -42,27 +28,8 @@ public class ClientAddress extends Client {
         this.Door = Door;
     }
 
-    public int getId() {
-        return this.Id;
-    }
+    public ClientAddress() {
 
-    public void setId() {
-        this.Id = Id;
-    }
-    public String getEmail() {
-        return this.Email;
-    }
-
-    public void setEmail(String Email) {
-        this.Email = Email;
-    }
-
-    public String getDni() {
-        return this.Dni;
-    }
-
-    public void setDni(String Dni) {
-        this.Dni = Dni;
     }
 
     public int getNum() {
@@ -70,7 +37,7 @@ public class ClientAddress extends Client {
     }
 
     public int setNum(int Num) {
-        this.Num = Num;
+        return this.Num = Num;
     }
 
     public String getCity() {

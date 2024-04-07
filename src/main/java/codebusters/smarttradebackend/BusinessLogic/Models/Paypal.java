@@ -1,9 +1,6 @@
-package src.main.java.codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 
 @Entity
 public class Paypal {
@@ -11,18 +8,22 @@ public class Paypal {
     @Id
     private int Id;
 
-    @Column(unique = true)
     @ManyToOne(optional = true)
-    private String Dni;
+    @JoinColumn(name="DNI")
+    private Client DNI;
 
     private String Email;
     private int Tlf;
 
-    public Paypal(int Id, String Dni, String Email, int Tlf) {
+    public Paypal(int Id, Client Dni, String Email, int Tlf) {
         this.Id = Id;
-        this.Dni = Dni;
+        this.DNI = Dni;
         this.Email = Email;
         this.Tlf = Tlf;
+    }
+
+    public Paypal() {
+
     }
 
     public int getId() {
@@ -33,12 +34,12 @@ public class Paypal {
         this.Id = Id;
     }
 
-    public String getDni() {
-        return this.Dni;
+    public Client getDni() {
+        return this.DNI;
     }
 
-    public void setDni(String Dni) {
-        this.Dni = Dni;
+    public void setDni(Client Dni) {
+        this.DNI = Dni;
     }
 
     public String getEmail() {

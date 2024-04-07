@@ -1,4 +1,4 @@
-package src.main.java.codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -8,28 +8,14 @@ import jakarta.persistence.Column;
 @Entity
 public class SellerAddress extends Seller {
 
-    @Id
-    private int Id;
-
-    @Column(unique = true)
-    @ManyToOne(optional = true)
-    private String Email;
-
-    @Column(unique = true)
-    @ManyToOne(optional = true)
-    private String Cif;
-
     private String City;
     private String Street;
     private int Number;
     private int Flat;
     private int Door;
 
-    public SellerAddress(int Id, String Email, String Cif, String City, String Street, int Number, int Flat, int Door) {
-        super(Id, Email, Cif, Iban);
-        this.Id = Id;
-        this.Email = Email;
-        this.Cif = Cif;
+    public SellerAddress(int Id, String Name, String Password, String Email, String Cif, String Iban, String City, String Street, int Number, int Flat, int Door) {
+        super(Id, Name, Password, Email, Cif, Iban);
         this.City = City;
         this.Street = Street;
         this.Number = Number;
@@ -37,27 +23,8 @@ public class SellerAddress extends Seller {
         this.Door = Door;
     }
 
-    public int getId() {
-        return this.Id;
-    }
+    public SellerAddress() {
 
-    public void setId() {
-        this.Id = Id;
-    }
-    public String getEmail() {
-        return this.Email;
-    }
-
-    public void setEmail(String Email) {
-        this.Email = Email;
-    }
-
-    public String getCif() {
-        return this.Cif;
-    }
-
-    public void setCif(String Cif) {
-        this.Cif = Cif;
     }
 
     public String getCity() {
