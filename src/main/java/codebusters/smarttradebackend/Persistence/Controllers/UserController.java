@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
+@RequestMapping("/User")
 public class UserController {
 
     @Autowired
@@ -17,6 +18,6 @@ public class UserController {
 
     @GetMapping("/getUsers")
     public ArrayList<User> getUsers() {
-        return (ArrayList<User>) service.getUsers();
+        return this.service.getUsers();
     }
 }

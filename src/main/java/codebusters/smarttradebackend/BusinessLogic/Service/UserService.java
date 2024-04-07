@@ -20,7 +20,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Optional<User> getUserById(String id) {
+    public Optional<User> getUserById(int id) {
         return data.findById(id);
     }
 

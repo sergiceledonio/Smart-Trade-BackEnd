@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface IUserService {
     public ArrayList<User> getUsers();
-    public Optional<User> getUserById(String email);
+    public Optional<User> getUserById(int id);
     public int save(User u);
     public void delete(String email);
 }

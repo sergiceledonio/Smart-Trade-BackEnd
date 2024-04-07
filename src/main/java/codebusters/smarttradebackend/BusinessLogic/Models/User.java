@@ -9,8 +9,8 @@ public class User {
     @Id
     private int id;
     private String Email;
-    private String Nombre;
-    private String Contrasena;
+    private String Name;
+    private String Password;
 
     public int getId() {
         return this.id;
@@ -26,19 +26,19 @@ public class User {
         this.Email = email;
     }
 
-    public String getNombre() {
-        return this.Nombre;
+    public String getName() {
+        return this.Name;
     }
 
-    public void setNombre(String nombre) {
-        this.Nombre = nombre;
+    public void setName(String nombre) {
+        this.Name = nombre;
     }
 
-    public String getcontrasena() {
-        return this.Contrasena;
+    public String getPassword() {
+        return this.Password;
     }
 
-    public void setContrasena(String contrasena) {
-        this.Contrasena = contrasena;
+    public void setPassword(String contrasena) {
+        this.Password = contrasena;
     }
 }
