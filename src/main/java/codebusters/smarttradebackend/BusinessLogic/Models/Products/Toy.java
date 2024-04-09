@@ -1,9 +1,8 @@
-package codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models.Products;
 
+import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Column;
 
 @Entity
 public class Toy extends Product {

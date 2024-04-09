@@ -1,12 +1,12 @@
 package codebusters.smarttradebackend.BusinessLogic.Service;
 
 import codebusters.smarttradebackend.BusinessLogic.IntService.IUserService;
-import codebusters.smarttradebackend.BusinessLogic.Models.User;
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,8 +15,8 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository data;
     @Override
-    public ArrayList<User> getUsers() {
-        return (ArrayList<User>) data.findAll();
+    public List<User> getUsers() {
+        return (List<User>) data.findAll();
     }
 
     @Override

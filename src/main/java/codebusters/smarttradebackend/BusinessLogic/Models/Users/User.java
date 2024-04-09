@@ -1,4 +1,4 @@
-package codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models.Users;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

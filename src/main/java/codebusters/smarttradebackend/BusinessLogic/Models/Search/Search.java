@@ -1,5 +1,6 @@
-package codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models.Search;
 
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import jakarta.persistence.*;
 
 import java.util.Date;

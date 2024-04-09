@@ -1,8 +1,7 @@
-package codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models.Users;
 
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Column;
 
 @Entity

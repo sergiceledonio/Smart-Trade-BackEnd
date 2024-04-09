@@ -1,14 +1,11 @@
-package codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models.Products;
 
+import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Column;
-
-import java.awt.image.CropImageFilter;
 
 @Entity
-public class Electronic extends Product{
+public class Electronic extends Product {
     private String Material;
     private String Type;
     private String Description;

@@ -1,28 +1,36 @@
-package codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models.Products;
 
+import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Column;
 
 @Entity
-public class Cosmetic extends Product {
+public class Clothing extends Product {
 
+    private String Size;
     private String Color;
     private String Material;
     private String Type;
     private String Description;
 
-    public Cosmetic(int Id, String Name, String Color, String Material, String Type, String Description, Seller cif, double price) {
+    public Clothing(int Id, String Name, String Size, String Color, String Material, String Type, String Description, Seller cif, double price) {
         super(Id, cif, Name, price);
+        this.Size = Size;
         this.Color = Color;
         this.Material = Material;
         this.Type = Type;
         this.Description = Description;
     }
 
-    public Cosmetic() {
+    public Clothing() {
 
+    }
+    public String getSize() {
+        return this.Size;
+    }
+
+    public void setSize(String Size) {
+        this.Size = Size;
     }
 
     public String getColor() {
