@@ -1,9 +1,7 @@
-package codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models.Users;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 
 @Entity
 public class Client extends User {

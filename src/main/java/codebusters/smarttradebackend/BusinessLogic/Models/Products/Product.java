@@ -1,5 +1,6 @@
-package codebusters.smarttradebackend.BusinessLogic.Models;
+package codebusters.smarttradebackend.BusinessLogic.Models.Products;
 
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
 import jakarta.persistence.*;
 
 @Entity
