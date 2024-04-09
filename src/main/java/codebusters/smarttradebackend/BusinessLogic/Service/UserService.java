@@ -14,6 +14,7 @@ public class UserService implements IUserService {
 
     @Autowired
     private UserRepository data;
+
     @Override
     public ArrayList<User> getUsers() {
         return (ArrayList<User>) data.findAll();
@@ -32,5 +33,28 @@ public class UserService implements IUserService {
     @Override
     public void delete(String email) {
 
+    }
+
+    public void register(User user) {
+        try {
+            if (data.findByEmailAndPassword(user.getEmail(), user.getPassword()) != null) {
+                throw new Exception("Usuario registrado anteriormante");
+            }
+            data.save(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public User login(String email, String password) {
+        try {
+            User user = data.findByEmailAndPassword(email, password);
+            if (user == null) {
+                throw new Exception("Usuario no registrado");
+            }
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
