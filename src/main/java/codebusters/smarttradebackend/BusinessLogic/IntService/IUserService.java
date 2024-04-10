@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
+
     public List<User> getUsers();
     public Optional<User> getUserById(int id);
     public int save(User u);

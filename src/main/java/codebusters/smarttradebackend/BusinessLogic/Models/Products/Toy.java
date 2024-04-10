@@ -12,7 +12,7 @@ public class Toy extends Product {
     private String Description;
 
     public Toy(int Id, String Name, int RecAge, String Type, String Description, Seller cif, double price) {
-        super(Id, cif, Name, price);
+        super(Id, cif, Name, price, NumStars);
         this.RecAge = RecAge;
         this.Type = Type;
         this.Description = Description;

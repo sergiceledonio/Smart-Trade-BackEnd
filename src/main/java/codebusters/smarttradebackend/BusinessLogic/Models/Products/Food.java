@@ -12,7 +12,7 @@ public class Food extends Product {
     private String Description;
 
     public Food(int Id, String Name, double Kilogram, String Type, String Description, Seller cif, double price) {
-        super(Id, cif, Name, price);
+        super(Id, cif, Name, price, NumStars);
         this.Kilogram = Kilogram;
         this.Type = Type;
         this.Description = Description;

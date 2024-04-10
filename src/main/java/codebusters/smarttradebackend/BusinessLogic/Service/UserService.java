@@ -47,14 +47,15 @@ public class UserService implements IUserService {
     }
 
     public User login(String email, String password) {
+        User user = null;
         try {
-            User user = data.findByEmailAndPassword(email, password);
+            user = data.findByEmailAndPassword(email, password);
             if (user == null) {
                 throw new Exception("Usuario no registrado");
             }
-            return user;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return user;
     }
 }
