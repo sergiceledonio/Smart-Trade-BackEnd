@@ -51,10 +51,12 @@ public class UserService implements IUserService {
             User user = data.findByEmailAndPassword(email, password);
             if (user == null) {
                 throw new Exception("Usuario no registrado");
+            }else{
+                return user;
             }
-            return user;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 }
