@@ -12,7 +12,7 @@ public class Book extends Product {
     private int Edition;
     private String Description;
 
-    public Book(int Id, String Name, String Title, String Author, String Saga, int Edition, String Description, Seller cif, double price) {
+    public Book(int Id, String Name, String Title, String Author, String Saga, int Edition, String Description, Seller cif, int NumStars, double price, int ShippingDuration) {
         super(Id, cif, Name, price, NumStars, ShippingDuration);
         this.Title = Title;
         this.Author = Author;
