@@ -17,15 +17,15 @@ public class Product {
     private String Name;
 
     private double Price;
-    private int NumStars;
+    private int StarsNum;
     private int ShippingDuration;
 
-    public Product(int Id, Seller Cif, String Name, double Price, int NumStars, int ShippingDuration) {
+    public Product(int Id, Seller Cif, String Name, double Price, int StarsNum, int ShippingDuration) {
         this.Id = Id;
         this.CIF = Cif;
         this.Name = Name;
         this.Price = Price;
-        this.NumStars = NumStars;
+        this.StarsNum = StarsNum;
         this.ShippingDuration = ShippingDuration;
     }
 
@@ -65,11 +65,19 @@ public class Product {
         this.Price = Price;
     }
 
-    public int getNumStars() {
-        return this.NumStars;
+    public int getStarsNum() {
+        return this.StarsNum;
     }
 
-    public void setNumStars(int NumStars) {
-        this.NumStars = NumStars;
+    public void setStarsNum(int StarsNum) {
+        this.StarsNum = StarsNum;
+    }
+
+    public int getShippingDuration() {
+        return this.ShippingDuration;
+    }
+
+    public void setShippingDuration(int ShippingDuration) {
+        this.ShippingDuration = ShippingDuration;
     }
 }

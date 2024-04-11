@@ -12,8 +12,9 @@ public class Book extends Product {
     private int Edition;
     private String Description;
 
-    public Book(int Id, String Name, String Title, String Author, String Saga, int Edition, String Description, Seller cif, int NumStars, double price, int ShippingDuration) {
-        super(Id, cif, Name, price, NumStars, ShippingDuration);
+    public Book(int Id, String Name, String Title, String Author, String Saga, int Edition, String Description,
+                    Seller Cif, double Price, int StarsNum, int ShippingDuration) {
+        super(Id, Cif, Name, Price, StarsNum, ShippingDuration);
         this.Title = Title;
         this.Author = Author;
         this.Saga = Saga;

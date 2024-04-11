@@ -13,8 +13,9 @@ public class Clothing extends Product {
     private String Type;
     private String Description;
 
-    public Clothing(int Id, String Name, String Size, String Color, String Material, String Type, String Description, Seller cif, double price) {
-        super(Id, cif, Name, price, NumStars);
+    public Clothing(int Id, String Name, String Size, String Color, String Material, String Type, String Description,
+                        Seller Cif, double Price, int StarsNum, int ShippingDuration) {
+        super(Id, Cif, Name, Price, StarsNum, ShippingDuration);
         this.Size = Size;
         this.Color = Color;
         this.Material = Material;

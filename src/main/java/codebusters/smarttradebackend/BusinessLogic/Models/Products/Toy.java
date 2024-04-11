@@ -11,8 +11,9 @@ public class Toy extends Product {
     private String Type;
     private String Description;
 
-    public Toy(int Id, String Name, int RecAge, String Type, String Description, Seller cif, double price) {
-        super(Id, cif, Name, price, NumStars);
+    public Toy(int Id, String Name, int RecAge, String Type, String Description, Seller Cif, double Price, int StarsNum,
+                    int ShippingDuration) {
+        super(Id, Cif, Name, Price, StarsNum, ShippingDuration);
         this.RecAge = RecAge;
         this.Type = Type;
         this.Description = Description;

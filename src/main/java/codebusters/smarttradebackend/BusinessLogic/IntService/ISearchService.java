@@ -8,6 +8,7 @@ public interface ISearchService {
     public List<Product> sortByPrice(List<Product> Products, double minPrice, double maxPrice);
     public List<Product> sortByAssessment(List<Product> Products, int starNumber);
     public List<Product> sortByShippingDuration(List<Product> Products, int days);
+    public List<Product> sortByCategory(List<Product> Products, String category);
     public List<Product> sortByAscendingCategory(List<Product> Products);
     public List<Product> sortByDescendingCategory(List<Product> Products);
 }

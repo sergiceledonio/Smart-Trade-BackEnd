@@ -9,7 +9,21 @@ import java.util.Collections;
 import java.util.Comparator;
 
 @Service
-public class SearchService implements ISearchService, Comparator {
+public class SearchService implements ISearchService {
+
+    public static class PriceComparator implements Comparator<Product> {
+        @Override
+        public int compare(Product p1, Product p2) {
+            return Double.compare(p1.getPrice(), p2.getPrice());
+        }
+    }
+
+    public static class StarsNumComparator implements Comparator<Product> {
+        @Override
+        public int compare(Product p1, Product p2) {
+            return Double.compare(p1.getStarsNum(), p2.getStarsNum());
+        }
+    }
 
     public List<Product> sortByPrice(List<Product> Products, double minPrice, double maxPrice) {
         List<Product> auxProducts = new ArrayList<Product>();
@@ -18,31 +32,68 @@ public class SearchService implements ISearchService, Comparator {
                 auxProducts.add(Products.get(i));
             }
         }
-        Collections.sort(auxProducts, (Product p1, Product p2) -> {
-            return Double.compare(p1.getPrice(), p2.getPrice());
-        });
+        Collections.sort(auxProducts, new PriceComparator());
         return auxProducts;
     }
 
     public List<Product> sortByAssessment(List<Product> Products, int starNumber) {
         List<Product> auxProducts = new ArrayList<Product>();
         for (int i = 0; i < Products.size(); i++) {
-            if (Products.get(i).getNumStars() >= starNumber) {
+            if (Products.get(i).getStarsNum() >= starNumber) {
                 auxProducts.add(Products.get(i));
             }
         }
-        Collections.sort(auxProducts, (Product p1, Product p2) -> {
-            return Integer.compare(p1.getNumStars(), p2.getNumStars());
-        });
+        Collections.sort(auxProducts, new StarsNumComparator());
         return auxProducts;
     }
 
-    /*
     public List<Product> sortByShippingDuration(List<Product> Products, int days) {
         List<Product> auxProducts = new ArrayList<Product>();
         for (int i = 0; i < Products.size(); i++) {
-            if (Products.get(i).getNumStars() >= starNumber)
+            if (Products.get(i).getShippingDuration() == days) {
+                auxProducts.add(Products.get(i));
+            }
         }
+        return auxProducts;
     }
-    */
+
+    public List<Product> sortByCategory(List<Product> Products, String category) {
+        List<Product> auxProducts = new ArrayList<Product>();
+        for (int i = 0; i < Products.size(); i++) {
+            if (Products.get(i).getClass().getSimpleName().toLowerCase().equals(category.toLowerCase())) {
+                auxProducts.add(Products.get(i));
+            }
+        }
+        return auxProducts;
+    }
+
+    public List<Product> sortByAscendingCategory(List<Product> Products) {
+        List<Product> auxProducts = new ArrayList<Product>();
+        List<String> ascendingCategories = new ArrayList<String>(List.of("book", "clothing", "cosmetic", "electronic",
+            "food", "tourism", "toy"));
+        for (int i = 0; i < Products.size(); i++) {
+            for (int j = 0; j < ascendingCategories.size(); j++) {
+                if (Products.get(i).getClass().getSimpleName().toLowerCase().equals(ascendingCategories.get(j))) {
+                    auxProducts.add(Products.get(i));
+                }
+            }
+        }
+        return auxProducts;
+    }
+
+    public List<Product> sortByDescendingCategory(List<Product> Products) {
+        List<Product> auxProducts = new ArrayList<Product>();
+        List<String> descendingCategories = new ArrayList<String>(List.of("toy", "tourism", "food", "electronic",
+            "cosmetic", "clothing", "book"));
+        for (int i = 0; i < Products.size(); i++) {
+            for (int j = 0; j < descendingCategories.size(); j++) {
+                if (Products.get(i).getClass().getSimpleName().toLowerCase().equals(descendingCategories.get(j))) {
+                    auxProducts.add(Products.get(i));
+                }
+            }
+        }
+        return auxProducts;
+    }
+
+
 }

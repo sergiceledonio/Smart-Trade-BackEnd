@@ -11,8 +11,9 @@ public class Food extends Product {
     private String Type;
     private String Description;
 
-    public Food(int Id, String Name, double Kilogram, String Type, String Description, Seller cif, double price) {
-        super(Id, cif, Name, price, NumStars);
+    public Food(int Id, String Name, double Kilogram, String Type, String Description, Seller Cif, double Price,
+                    int StarsNum, int ShippingDuration) {
+        super(Id, Cif, Name, Price, StarsNum, ShippingDuration);
         this.Kilogram = Kilogram;
         this.Type = Type;
         this.Description = Description;

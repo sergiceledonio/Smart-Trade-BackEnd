@@ -59,6 +59,5 @@ public class UserService implements IUserService {
             e.printStackTrace();
             return null;
         }
-        return user;
     }
 }
