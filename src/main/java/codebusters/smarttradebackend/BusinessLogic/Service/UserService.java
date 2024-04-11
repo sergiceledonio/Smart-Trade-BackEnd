@@ -39,8 +39,9 @@ public class UserService implements IUserService {
         try {
             if (data.findByEmailAndPassword(user.getEmail(), user.getPassword()) != null) {
                 throw new Exception("Usuario registrado anteriormante");
+            }else{
+                data.save(user);
             }
-            data.save(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
