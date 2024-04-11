@@ -19,11 +19,11 @@ public class UserController {
         return (List<User>) service.getUsers();
     }
 
-    @PostMapping("/registerClient")
+    @PostMapping("/Client")
     public User registerClient(@RequestBody User user) {
-        return this.registerClient(user);
+        return user;
     }
-    @PostMapping("/registerSeller")
+    @PostMapping("/Seller")
     public void registerSeller(@RequestBody User user) {
         service.register(user);
     }
