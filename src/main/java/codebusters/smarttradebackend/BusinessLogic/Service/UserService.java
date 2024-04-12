@@ -52,7 +52,7 @@ public class UserService implements IUserService {
         }
     }
 
-    public void sellerRegister(int id, String email, String name, String password, String cif, String iban) {
+    public void sellerRegister(int id, String email, String name, String password, String dni, String cif, String iban) {
         try {
             if (data.findSellerByEmailAndPassword(email, password) != null) {
                 throw new Exception("Vendedor registrado anteriormante");
@@ -62,6 +62,7 @@ public class UserService implements IUserService {
             seller.setEmail(email);
             seller.setName(name);
             seller.setPassword(password);
+            seller.setDni(dni);
             seller.setCif(cif);
             seller.setIban(iban);
             data.save(seller);
