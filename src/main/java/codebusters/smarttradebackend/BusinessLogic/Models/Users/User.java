@@ -25,7 +25,7 @@ public class User {
         return this.Id;
     }
 
-    public void setId() {
+    public void setId(int Id) {
         this.Id = Id;
     }
 
@@ -41,11 +41,15 @@ public class User {
         return this.Name;
     }
 
-    public String setName(String nombre) {
-        return this.Name = nombre;
+    public void setName(String name) {
+        this.Name = name;
     }
 
     public String getPassword() {
         return this.Password;
+    }
+
+    public void setPassword(String password) {
+        this.Password = password;
     }
 }

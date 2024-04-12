@@ -7,11 +7,11 @@ import jakarta.persistence.Entity;
 public class Client extends User {
 
     @Column(unique = true)
-    private String DNI;
+    private String Dni;
 
-    public Client(int Id, String Email, String Dni, String Name, String Password) {
+    public Client(int Id, String Email, String Name, String Password, String Dni) {
         super(Id, Email, Name, Password);
-        this.DNI = Dni;
+        this.Dni = Dni;
     }
 
     public Client() {
@@ -19,11 +19,11 @@ public class Client extends User {
     }
 
     public String getDni() {
-        return this.DNI;
+        return this.Dni;
     }
 
-    public void setDNI(String Dni) {
-        this.DNI = Dni;
+    public void setDni(String Dni) {
+        this.Dni = Dni;
     }
 }
 

@@ -11,6 +11,7 @@ public interface IUserService {
     public Optional<User> getUserById(int id);
     public int save(User u);
     public void delete(String email);
-    public void register(User user);
+    public void clientRegister(int id, String email, String name, String password, String dni);
+    public void sellerRegister(int id, String email, String name, String password, String cif, String iban);
     public User login(String email, String password);
 }

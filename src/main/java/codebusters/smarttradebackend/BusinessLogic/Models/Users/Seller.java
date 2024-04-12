@@ -12,7 +12,7 @@ public class Seller extends User {
 
     private String Iban;
 
-    public Seller(int Id, String Name, String Password, String Email, String Cif, String Iban) {
+    public Seller(int Id, String Email, String Name, String Password, String Cif, String Iban) {
         super(Id, Email, Name, Password);
         this.CIF = Cif;
         this.Iban = Iban;
@@ -34,7 +34,7 @@ public class Seller extends User {
         return this.Iban;
     }
 
-    public void setIban() {
+    public void setIban(String iban) {
         this.Iban = Iban;
     }
 }
