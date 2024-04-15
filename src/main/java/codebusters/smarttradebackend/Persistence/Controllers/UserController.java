@@ -21,7 +21,7 @@ public class UserController {
 
     @PostMapping("/registerClient")
     public User registerClient(@RequestBody User user) {
-        return this.clientRegister(user);
+        return service.clientRegister(user);
     }
     @PostMapping("/registerSeller")
     public void registerSeller(@RequestBody User user) {
