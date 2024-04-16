@@ -1,5 +1,6 @@
 package codebusters.smarttradebackend.Persistence.Controllers;
 
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.Client;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.BusinessLogic.Service.UserService;
@@ -20,14 +21,13 @@ public class UserController {
         return (List<User>) service.getUsers();
     }
 
-    @PostMapping("/registerClient")
-    public void registerClient(@RequestBody User user) {
-        service.clientRegister(user.getId(), user.getEmail(), user.getName(), user.getPassword(), user.getDni());
+    @PostMapping("/Client")
+    public Client registerClient(@RequestBody Client client) {
+        return service.clientRegister(1, client.getEmail(), client.getName(), client.getPassword(), client.getDni());
     }
-    @PostMapping("/registerSeller")
-    public void registerSeller(@RequestBody Seller user) {
-        service.sellerRegister(user.getId(), user.getEmail(),
-                user.getName(), user.getPassword(), user.getDni(), user.getCif(), user.getIban());
+    @PostMapping("/Seller")
+    public Seller registerSeller(@RequestBody Seller seller) {
+       return service.sellerRegister(1, seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban());
     }
 
 }
