@@ -12,8 +12,9 @@ public class SellerAddress extends Seller {
     private int Flat;
     private int Door;
 
-    public SellerAddress(int Id, String Name, String Password, String Email, String Cif, String Iban, String City, String Street, int Number, int Flat, int Door) {
-        super(Id, Name, Password, Email, Cif, Iban);
+    public SellerAddress(int Id, String Email, String Name, String Password, String Dni, String Cif, String Iban,
+                            String City, String Street, int Number, int Flat, int Door) {
+        super(Id, Email, Name, Password, Dni, Cif, Iban);
         this.City = City;
         this.Street = Street;
         this.Number = Number;

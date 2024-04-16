@@ -12,8 +12,8 @@ public class Seller extends User {
 
     private String Iban;
 
-    public Seller(int Id, String Email, String Name, String Password, String Cif, String Iban) {
-        super(Id, Email, Name, Password);
+    public Seller(int Id, String Email, String Name, String Password, String Dni, String Cif, String Iban) {
+        super(Id, Email, Name, Password, Dni);
         this.CIF = Cif;
         this.Iban = Iban;
     }
