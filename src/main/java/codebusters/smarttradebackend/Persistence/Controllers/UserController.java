@@ -1,5 +1,6 @@
 package codebusters.smarttradebackend.Persistence.Controllers;
 
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.BusinessLogic.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,13 @@ public class UserController {
     }
 
     @PostMapping("/registerClient")
-    public User registerClient(@RequestBody User user) {
-        return service.clientRegister(user);
+    public void registerClient(@RequestBody User user) {
+        service.clientRegister(user.getId(), user.getEmail(), user.getName(), user.getPassword(), user.getDni());
     }
     @PostMapping("/registerSeller")
-    public void registerSeller(@RequestBody User user) {
-        service.sellerRegister(user);
+    public void registerSeller(@RequestBody Seller user) {
+        service.sellerRegister(user.getId(), user.getEmail(),
+                user.getName(), user.getPassword(), user.getDni(), user.getCif(), user.getIban());
     }
 
 }
