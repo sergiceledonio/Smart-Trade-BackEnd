@@ -35,12 +35,12 @@ public class UserService implements IUserService {
 
     }
 
-    public void clientRegister(int id, String email, String name, String password, String dni) {
+    public Client clientRegister(int id, String email, String name, String password, String dni) {
+        Client client = new Client();
         try {
             if (data.findClientByEmailAndPassword(email, password) != null) {
                 throw new Exception("Cliente registrado anteriormante");
             }
-            Client client = null;
             client.setId(id);
             client.setEmail(email);
             client.setName(name);
@@ -50,14 +50,15 @@ public class UserService implements IUserService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return client;
     }
 
-    public void sellerRegister(int id, String email, String name, String password, String cif, String iban) {
+    public Seller sellerRegister(int id, String email, String name, String password, String cif, String iban) {
+        Seller seller = new Seller();
         try {
             if (data.findSellerByEmailAndPassword(email, password) != null) {
                 throw new Exception("Vendedor registrado anteriormante");
             }
-            Seller seller = null;
             seller.setId(id);
             seller.setEmail(email);
             seller.setName(name);
@@ -68,6 +69,7 @@ public class UserService implements IUserService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return seller;
     }
 
     public User login(String email, String password) {
