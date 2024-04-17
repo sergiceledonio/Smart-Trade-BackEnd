@@ -18,8 +18,9 @@ public class UserService implements IUserService {
 
     @Override
     public List<Usuario> getUsers() {
-        return (List<Usuario>) data.findAll();
+        return (List<Usuario>) data.findAllUsers();
     }
+
 
     @Override
     public Optional<Usuario> getUserById(int id) {

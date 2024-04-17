@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<Usuario, Integer> {
 
+    @Query("select u from Usuario u")
+    public List<Usuario> findAllUsers();
+
     @Query("select u from Usuario u where u.Email = ?1 and u.Password = ?2")
     public Usuario findByEmailAndPassword(String email, String password);
 
