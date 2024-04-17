@@ -1,6 +1,5 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
-// Interfaz Producto
 public class Product {
     private int id;
     private String CIF;
