@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 
 //@Entity
-public class Books implements Product {
+public class Books {
     //@Id
     private int id;
     @Column(unique = true)
@@ -27,10 +27,6 @@ public class Books implements Product {
         this.description = description;
     }
 
-    @Override
-    public String getProductType(){
-        return "Books";
-    }
 
     public int getId() {
         return id;
@@ -88,13 +84,4 @@ public class Books implements Product {
         this.description = description;
     }
 
-    @Override
-    public void showInfo() {
-        System.out.println("Name: " + name);
-        System.out.println("Title: " + title);
-        System.out.println("Author: " + author);
-        System.out.println("Saga: " + saga);
-        System.out.println("Edition: " + edition);
-        System.out.println("Description: " + description);
-    }
 }
