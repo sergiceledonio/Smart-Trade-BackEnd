@@ -32,14 +32,15 @@ public class UserController {
        return service.sellerRegister(1, seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban());
     }
     @PostMapping("Login")
-    public ResponseEntity<User> login(@RequestParam String email, @RequestParam String password) {
+    public Object[] login(@RequestParam String email, @RequestParam String password) {
         User user = service.login(email, password);
+        Boolean isSeller = service.isSeller(user);
+        Object[] res = {user.getEmail(), user.getPassword(), user.getName(), user.getDni(), isSeller};
         if (user != null) {
-            return ResponseEntity.ok(user);
+            return res;
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Devuelve un código de estado 401 si las credenciales son incorrectas
+            return null;
         }
     }
-
 
 }
