@@ -5,6 +5,8 @@ import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.BusinessLogic.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,5 +31,15 @@ public class UserController {
     public Seller registerSeller(@RequestBody Seller seller) {
        return service.sellerRegister(1, seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban());
     }
+    @PostMapping("Login")
+    public ResponseEntity<User> login(@RequestParam String email, @RequestParam String password) {
+        User user = service.login(email, password);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Devuelve un código de estado 401 si las credenciales son incorrectas
+        }
+    }
+
 
 }
