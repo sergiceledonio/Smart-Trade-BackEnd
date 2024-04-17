@@ -18,12 +18,12 @@ public class SearchService implements ISearchService {
         }
     }
 
-    public static class StarsNumComparator implements Comparator<Product> {
+    /*public static class StarsNumComparator implements Comparator<Product> {
         @Override
         public int compare(Product p1, Product p2) {
             return Double.compare(p1.getStarsNum(), p2.getStarsNum());
         }
-    }
+    }*/
 
     public List<Product> sortByPrice(List<Product> Products, double minPrice, double maxPrice) {
         List<Product> auxProducts = new ArrayList<Product>();
@@ -36,7 +36,7 @@ public class SearchService implements ISearchService {
         return auxProducts;
     }
 
-    public List<Product> sortByAssessment(List<Product> Products, int starNumber) {
+    /*public List<Product> sortByAssessment(List<Product> Products, int starNumber) {
         List<Product> auxProducts = new ArrayList<Product>();
         for (int i = 0; i < Products.size(); i++) {
             if (Products.get(i).getStarsNum() >= starNumber) {
@@ -45,9 +45,9 @@ public class SearchService implements ISearchService {
         }
         Collections.sort(auxProducts, new StarsNumComparator());
         return auxProducts;
-    }
+    }*/
 
-    public List<Product> sortByShippingDuration(List<Product> Products, int days) {
+    /*public List<Product> sortByShippingDuration(List<Product> Products, int days) {
         List<Product> auxProducts = new ArrayList<Product>();
         for (int i = 0; i < Products.size(); i++) {
             if (Products.get(i).getShippingDuration() == days) {
@@ -55,7 +55,7 @@ public class SearchService implements ISearchService {
             }
         }
         return auxProducts;
-    }
+    }*/
 
     public List<Product> sortByCategory(List<Product> Products, String category) {
         List<Product> auxProducts = new ArrayList<Product>();
