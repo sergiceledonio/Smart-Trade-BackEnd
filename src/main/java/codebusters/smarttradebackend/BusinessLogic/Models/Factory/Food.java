@@ -1,26 +1,25 @@
-package codebusters.smarttradebackend.Factory;
+package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
-public class Toys implements Product {
-
+public class Food implements Product {
     private int id;
     private String name;
-    private String recAge;
+    private String kilogram;
     private String type;
     private String description;
 
-    public Toys(String id, String name, String recAge, String type, String description) {
-
+    public Food(String id, String name, String kilogram, String type, String description) {
         this.id = Integer.parseInt(id);
         this.name = name;
-        this.recAge = recAge;
+        this.kilogram = kilogram;
         this.type = type;
         this.description = description;
     }
 
     @Override
-    public String getProductType() {
-        return "Toys";
+    public String getProductType(){
+        return "Food";
     }
+
     public int getId() {
         return id;
     }
@@ -37,13 +36,12 @@ public class Toys implements Product {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getRecAge() {
-        return recAge;
+    public String getKilogram() {
+        return kilogram;
     }
 
-    public void setRecAge(String recAge) {
-        this.recAge = recAge;
+    public void setKilogram(String kilogram) {
+        this.kilogram = kilogram;
     }
 
     public String getType() {
@@ -65,7 +63,7 @@ public class Toys implements Product {
     @Override
     public void showInfo() {
         System.out.println("Name: " + name);
-        System.out.println("Recomended Age: " + recAge);
+        System.out.println("Size: " + kilogram);
         System.out.println("Type: " + type);
         System.out.println("Description: " + description);
     }

@@ -1,4 +1,4 @@
-package codebusters.smarttradebackend.Factory;
+package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
 // Interfaz Producto
 public interface Product {

@@ -1,4 +1,4 @@
-package codebusters.smarttradebackend.Factory;
+package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
 public class Cosmetics implements Product {
     private int id;

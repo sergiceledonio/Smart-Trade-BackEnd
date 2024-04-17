@@ -1,23 +1,27 @@
-package codebusters.smarttradebackend.Factory;
+package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
-public class Food implements Product {
+public class Clothing implements Product {
     private int id;
     private String name;
-    private String kilogram;
+    private String size;
+    private String color;
+    private String material;
     private String type;
     private String description;
 
-    public Food(String id, String name, String kilogram, String type, String description) {
+    public Clothing(String id, String name, String size, String color, String material, String type, String description) {
         this.id = Integer.parseInt(id);
         this.name = name;
-        this.kilogram = kilogram;
+        this.size = size;
+        this.color = color;
+        this.material = material;
         this.type = type;
         this.description = description;
     }
 
     @Override
     public String getProductType(){
-        return "Food";
+        return "Clothing";
     }
 
     public int getId() {
@@ -36,12 +40,28 @@ public class Food implements Product {
     public void setName(String name) {
         this.name = name;
     }
-    public String getKilogram() {
-        return kilogram;
+    public String getSize() {
+        return size;
     }
 
-    public void setKilogram(String kilogram) {
-        this.kilogram = kilogram;
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
     public String getType() {
@@ -63,7 +83,9 @@ public class Food implements Product {
     @Override
     public void showInfo() {
         System.out.println("Name: " + name);
-        System.out.println("Size: " + kilogram);
+        System.out.println("Size: " + size);
+        System.out.println("Color: " + color);
+        System.out.println("Material: " + material);
         System.out.println("Type: " + type);
         System.out.println("Description: " + description);
     }

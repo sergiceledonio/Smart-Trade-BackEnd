@@ -1,7 +1,15 @@
-package codebusters.smarttradebackend.Factory;
+package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+
+//@Entity
 public class Books implements Product {
+    //@Id
     private int id;
+    @Column(unique = true)
     private String name;
     private String title;
     private String author;

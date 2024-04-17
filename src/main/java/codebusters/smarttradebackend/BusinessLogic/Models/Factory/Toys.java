@@ -1,29 +1,26 @@
-package codebusters.smarttradebackend.Factory;
+package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
-public class Clothing implements Product {
+public class Toys implements Product {
+
     private int id;
     private String name;
-    private String size;
-    private String color;
-    private String material;
+    private String recAge;
     private String type;
     private String description;
 
-    public Clothing(String id, String name, String size, String color, String material, String type, String description) {
+    public Toys(String id, String name, String recAge, String type, String description) {
+
         this.id = Integer.parseInt(id);
         this.name = name;
-        this.size = size;
-        this.color = color;
-        this.material = material;
+        this.recAge = recAge;
         this.type = type;
         this.description = description;
     }
 
     @Override
-    public String getProductType(){
-        return "Clothing";
+    public String getProductType() {
+        return "Toys";
     }
-
     public int getId() {
         return id;
     }
@@ -40,28 +37,13 @@ public class Clothing implements Product {
     public void setName(String name) {
         this.name = name;
     }
-    public String getSize() {
-        return size;
+
+    public String getRecAge() {
+        return recAge;
     }
 
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(String material) {
-        this.material = material;
+    public void setRecAge(String recAge) {
+        this.recAge = recAge;
     }
 
     public String getType() {
@@ -83,9 +65,7 @@ public class Clothing implements Product {
     @Override
     public void showInfo() {
         System.out.println("Name: " + name);
-        System.out.println("Size: " + size);
-        System.out.println("Color: " + color);
-        System.out.println("Material: " + material);
+        System.out.println("Recomended Age: " + recAge);
         System.out.println("Type: " + type);
         System.out.println("Description: " + description);
     }
