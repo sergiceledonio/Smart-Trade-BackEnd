@@ -4,10 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 
-import java.io.Serializable;
-
 @Entity
-public class User {
+public class Usuario {
 
     @Id
     private int Id;
@@ -16,19 +14,16 @@ public class User {
     private String Name;
     private String Password;
 
-    @Column(unique = true)
-    private String Dni;
 
-    public User() {
+    public Usuario() {
 
     }
 
-    public User(int Id, String Email, String Name, String Password, String Dni) {
+    public Usuario(int Id, String Email, String Name, String Password) {
         this.Id = Id;
         this.Email = Email;
         this.Name = Name;
         this.Password = Password;
-        this.Dni = Dni;
     }
 
     public int getId() {
@@ -62,12 +57,6 @@ public class User {
     public void setPassword(String password) {
         this.Password = password;
     }
-
-    public String getDni() {
-        return this.Dni;
-    }
-
-    public void setDni(String Dni) {
-        this.Dni = Dni;
-    }
 }
+
+

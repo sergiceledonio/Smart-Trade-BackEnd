@@ -2,7 +2,7 @@ package codebusters.smarttradebackend.Persistence.Controllers;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.Client;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.Usuario;
 import codebusters.smarttradebackend.BusinessLogic.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +19,8 @@ public class UserController {
     private UserService service;
 
     @GetMapping("/getUsers")
-    public List<User> getUsers() {
-        return (List<User>) service.getUsers();
+    public List<Usuario> getUsers() {
+        return (List<Usuario>) service.getUsers();
     }
 
     @PostMapping("/Client")
@@ -33,14 +33,13 @@ public class UserController {
     }
     @PostMapping("Login")
     public Object[] login(@RequestParam String email, @RequestParam String password) {
-        User user = service.login(email, password);
+        Usuario user = service.login(email, password);
         Boolean isSeller = service.isSeller(user);
-        Object[] res = {user.getEmail(), user.getPassword(), user.getName(), user.getDni(), isSeller};
+        Object[] res = {user.getEmail(), user.getPassword(), user.getName(), "", isSeller};
         if (user != null) {
             return res;
-        } else {
+        }else{
             return null;
         }
     }
-
 }

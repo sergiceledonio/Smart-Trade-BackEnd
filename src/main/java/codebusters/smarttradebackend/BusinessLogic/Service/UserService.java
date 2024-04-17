@@ -16,17 +16,17 @@ public class UserService implements IUserService {
     private UserRepository data;
 
     @Override
-    public List<User> getUsers() {
-        return (List<User>) data.findAll();
+    public List<Usuario> getUsers() {
+        return (List<Usuario>) data.findAll();
     }
 
     @Override
-    public Optional<User> getUserById(int id) {
+    public Optional<Usuario> getUserById(int id) {
         return data.findById(id);
     }
 
     @Override
-    public int save(User u) {
+    public int save(Usuario u) {
         return 0;
     }
 
@@ -72,14 +72,14 @@ public class UserService implements IUserService {
         return seller;
     }
 
-    public User login(String email, String password) {
-        User user = null;
+    public Usuario login(String email, String password) {
+        Usuario myuser = null;
         try {
-            user = data.findByEmailAndPassword(email, password);
-            if (user == null) {
+            myuser = data.findByEmailAndPassword(email, password);
+            if (myuser == null) {
                 throw new Exception("Usuario no registrado");
             } else {
-                return user;
+                return myuser;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,7 +87,7 @@ public class UserService implements IUserService {
         }
     }
 
-    public Boolean isSeller(User user){
-        return user.getDni() == null;
+    public Boolean isSeller(Usuario user){
+        return true;
     }
 }
