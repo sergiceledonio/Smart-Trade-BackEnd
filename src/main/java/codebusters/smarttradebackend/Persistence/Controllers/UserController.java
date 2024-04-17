@@ -2,7 +2,7 @@ package codebusters.smarttradebackend.Persistence.Controllers;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.Client;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.Usuario;
 import codebusters.smarttradebackend.BusinessLogic.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +19,8 @@ public class UserController {
     private UserService service;
 
     @GetMapping("/getUsers")
-    public List<User> getUsers() {
-        return (List<User>) service.getUsers();
+    public List<Usuario> getUsers() {
+        return (List<Usuario>) service.getUsers();
     }
 
     @PostMapping("/Client")
@@ -32,10 +32,10 @@ public class UserController {
        return service.sellerRegister(1, seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban());
     }
     @PostMapping("Login")
-    public ResponseEntity<User> login(@RequestParam String email, @RequestParam String password) {
-        User user = service.login(email, password);
-        if (user != null) {
-            return ResponseEntity.ok(user);
+    public ResponseEntity<Usuario> login(@RequestParam String email, @RequestParam String password) {
+        Usuario myuser = service.login(email, password);
+        if (myuser != null) {
+            return ResponseEntity.ok(myuser);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Devuelve un código de estado 401 si las credenciales son incorrectas
         }
