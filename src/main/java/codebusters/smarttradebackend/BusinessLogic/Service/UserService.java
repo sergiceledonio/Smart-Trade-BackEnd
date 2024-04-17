@@ -3,6 +3,7 @@ package codebusters.smarttradebackend.BusinessLogic.Service;
 import codebusters.smarttradebackend.BusinessLogic.IntService.IUserService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.*;
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,8 +87,7 @@ public class UserService implements IUserService {
             return null;
         }
     }
-
-    public Boolean isSeller(Usuario user){
-        return true;
+    public List<Seller> findAllSellers() {
+        return  data.findAllSellers();
     }
 }

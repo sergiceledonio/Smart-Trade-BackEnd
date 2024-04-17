@@ -3,6 +3,9 @@ package codebusters.smarttradebackend.BusinessLogic.Models.Users;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
+import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
+
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -57,6 +60,7 @@ public class Usuario {
     public void setPassword(String password) {
         this.Password = password;
     }
+
 }
 
 

@@ -34,7 +34,17 @@ public class UserController {
     @PostMapping("Login")
     public Object[] login(@RequestParam String email, @RequestParam String password) {
         Usuario user = service.login(email, password);
-        Boolean isSeller = service.isSeller(user);
+        Boolean isSeller = false;
+        List<Seller> lista = service.findAllSellers();
+
+        for (Seller seller : lista) {
+            if (seller.getEmail().equals(email)) {
+
+                isSeller = true;
+                break;
+
+            }
+        }
         Object[] res = {user.getEmail(), user.getPassword(), user.getName(), "", isSeller};
         if (user != null) {
             return res;
