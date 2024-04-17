@@ -6,10 +6,14 @@ import jakarta.persistence.Entity;
 @Entity
 public class Client extends Usuario {
 
+    private int Id;
+    private String Email;
     private String Dni;
 
-    public Client(int Id, String Email, String Name, String Password, String Dni) {
-        super(Id, Email, Name, Password);
+    public Client(int Id, String Email, String Dni) {
+        //super(Id, Email, Name, Password);
+        this.Id = Id;
+        this.Email = Email;
         this.Dni = Dni;
     }
 

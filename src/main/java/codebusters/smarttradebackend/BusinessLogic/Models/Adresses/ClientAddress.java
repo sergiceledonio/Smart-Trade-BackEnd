@@ -18,7 +18,8 @@ public class ClientAddress extends Client {
 
     public ClientAddress(int Id, String Email, String Name, String Password, String Dni, int Num, String City,
                             String Street, int Number, int Flat, int Door) {
-        super(Id, Email, Name, Password, Dni);
+        //super(Id, Email, Name, Password, Dni);
+
         this.Num = Num;
         this.City = City;
         this.Street = Street;
