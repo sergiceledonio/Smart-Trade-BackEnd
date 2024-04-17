@@ -41,7 +41,7 @@ public class UserService implements IUserService {
         Client client = new Client();
         try {
             if (data.findClientByEmailAndPassword(email, password) != null) {
-                throw new Exception("Cliente registrado anteriormante");
+                throw new Exception("Cliente registrado anteriormante, el email es: " +email+ " y la contraseña: " + password);
             }
             client.setId(id);
             client.setEmail(email);
@@ -59,7 +59,7 @@ public class UserService implements IUserService {
         Seller seller = new Seller();
         try {
             if (data.findSellerByEmailAndPassword(email, password) != null) {
-                throw new Exception("Vendedor registrado anteriormante");
+                throw new Exception("Vendedor registrado anteriormante el email es: " +email+ " y la contraseña: " + password);
             }
             seller.setId(id);
             seller.setEmail(email);
@@ -81,6 +81,7 @@ public class UserService implements IUserService {
             if (myuser == null) {
                 throw new Exception("Usuario no registrado");
             } else {
+                System.out.println("El usuario que quiere acceder es: " + email + " y " + password);
                 return myuser;
             }
         } catch (Exception e) {

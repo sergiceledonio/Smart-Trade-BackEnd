@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/User")
@@ -32,24 +34,31 @@ public class UserController {
        return service.sellerRegister(1, seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban());
     }
     @PostMapping("Login")
-    public Object[] login(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<Object> login(@RequestBody Map<String, String> userData) {
+        String email = userData.get("email");
+        String password = userData.get("password");
+
         Usuario user = service.login(email, password);
-        Boolean isSeller = false;
+        boolean isSeller = false;
         List<Seller> lista = service.findAllSellers();
 
         for (Seller seller : lista) {
             if (seller.getEmail().equals(email)) {
-
                 isSeller = true;
                 break;
-
             }
         }
-        Object[] res = {user.getEmail(), user.getPassword(), user.getName(), "", isSeller};
-        if (user != null) {
-            return res;
-        }else{
-            return null;
+
+        if(user != null){
+            Map<String, Object> response = new HashMap<>();
+            response.put("email", user.getEmail());
+            response.put("name", user.getName());
+            response.put("isSeller", isSeller);
+            response.put("password", user.getPassword());
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
 }
