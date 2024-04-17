@@ -13,8 +13,8 @@ public class Cosmetic extends Product {
     private String Description;
 
     public Cosmetic(int Id, String Name, String Color, String Material, String Type, String Description, Seller Cif,
-                        double Price, int StarsNum, int ShippingDuration) {
-        super(Id, Cif, Name, Price, StarsNum, ShippingDuration);
+                        double Price) {
+        super(Id, Cif, Name, Price);
         this.Color = Color;
         this.Material = Material;
         this.Type = Type;

@@ -13,8 +13,8 @@ public class Tourism extends Product {
     private String Description;
 
     public Tourism(int Id, String Name, String Place, int People, String Type, String Description, Seller Cif,
-                        double Price, int StarsNum, int ShippingDuration) {
-        super(Id, Cif, Name, Price, StarsNum, ShippingDuration);
+                        double Price) {
+        super(Id, Cif, Name, Price);
         this.Place = Place;
         this.People = People;
         this.Type = Type;

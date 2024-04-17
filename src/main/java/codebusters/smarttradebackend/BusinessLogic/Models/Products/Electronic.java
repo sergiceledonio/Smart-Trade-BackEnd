@@ -10,9 +10,8 @@ public class Electronic extends Product {
     private String Type;
     private String Description;
 
-    public Electronic(int Id, String Name, String Material, String Type, String Description, Seller Cif, double Price,
-                        int StarsNum, int ShippingDuration) {
-        super(Id, Cif, Name, Price, StarsNum, ShippingDuration);
+    public Electronic(int Id, String Name, String Material, String Type, String Description, Seller Cif, double Price) {
+        super(Id, Cif, Name, Price);
         this.Material = Material;
         this.Type = Type;
         this.Description = Description;
