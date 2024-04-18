@@ -2,8 +2,11 @@ package codebusters.smarttradebackend.BusinessLogic.Models.Search;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.Usuario;
 import jakarta.persistence.*;
+import codebusters.smarttradebackend.BusinessLogic.Models.Products.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 public class Search {
@@ -19,12 +22,14 @@ public class Search {
     private Date Time;
 
     private String Text;
+    private List<Product> SearchHistory = new ArrayList<Product>();
 
-    public Search(int Id, Usuario Email, Date Time, String Text) {
+    public Search(int Id, Usuario Email, Date Time, String Text, List<Product> SearchHistory) {
         this.Id = Id;
         this.Email = Email;
         this.Time = Time;
         this.Text = Text;
+        this.SearchHistory = SearchHistory;
     }
 
     public Search() {
