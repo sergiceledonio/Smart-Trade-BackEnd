@@ -1,6 +1,6 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
-public class Tourism implements Product {
+public class Tourism {
     private int id;
     private String name;
     private String type;
@@ -17,10 +17,6 @@ public class Tourism implements Product {
         this.description = description;
     }
 
-    @Override
-    public String getProductType(){
-        return "Tourism";
-    }
 
     public int getId() {
         return id;
@@ -70,12 +66,5 @@ public class Tourism implements Product {
         this.description = description;
     }
 
-    @Override
-    public void showInfo() {
-        System.out.println("Name: " + name);
-        System.out.println("Type: " + type);
-        System.out.println("Place: " + place);
-        System.out.println("People: " + people);
-        System.out.println("Description: " + description);
-    }
+
 }

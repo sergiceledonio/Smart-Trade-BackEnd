@@ -1,8 +1,7 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
-public class CosmeticsFactory extends ProductFactory {
-    @Override
-    public Product createProduct(String[] parameters) {
+public class CosmeticsFactory {
+    public Cosmetics createProduct(String[] parameters) {
         if (parameters.length < 6) {
             throw new IllegalArgumentException("Insufficient parameters to create Clothing.");
         }

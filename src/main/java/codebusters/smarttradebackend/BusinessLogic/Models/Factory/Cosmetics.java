@@ -1,6 +1,6 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
-public class Cosmetics implements Product {
+public class Cosmetics {
     private int id;
     private String name;
     private String color;
@@ -17,10 +17,6 @@ public class Cosmetics implements Product {
         this.description = description;
     }
 
-    @Override
-    public String getProductType(){
-        return "Cosmetics";
-    }
 
     public int getId() {
         return id;
@@ -71,12 +67,5 @@ public class Cosmetics implements Product {
         this.description = description;
     }
 
-    @Override
-    public void showInfo() {
-        System.out.println("Name: " + name);
-        System.out.println("Color: " + color);
-        System.out.println("Material: " + material);
-        System.out.println("Type: " + type);
-        System.out.println("Description: " + description);
-    }
+
 }
