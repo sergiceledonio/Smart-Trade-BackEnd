@@ -1,6 +1,6 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Search;
 
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.Usuario;
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -13,14 +13,14 @@ public class Search {
 
     @ManyToOne(optional = true)
     @JoinColumn(name="Email")
-    private Usuario Email;
+    private User Email;
 
     @Column(unique = true)
     private Date Time;
 
     private String Text;
 
-    public Search(int Id, Usuario Email, Date Time, String Text) {
+    public Search(int Id, User Email, Date Time, String Text) {
         this.Id = Id;
         this.Email = Email;
         this.Time = Time;
@@ -38,11 +38,11 @@ public class Search {
     public void setId() {
         this.Id = Id;
     }
-    public Usuario getEmail() {
+    public User getEmail() {
         return this.Email;
     }
 
-    public void setEmail(Usuario Email) {
+    public void setEmail(User Email) {
         this.Email = Email;
     }
 

@@ -2,7 +2,7 @@ package codebusters.smarttradebackend.Persistence.Controllers;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.Client;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.Usuario;
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.BusinessLogic.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,40 +21,45 @@ public class UserController {
     private UserService service;
 
     @GetMapping("/getUsers")
-    public List<Usuario> getUsers() {
-        return (List<Usuario>) service.getUsers();
+    public List<User> getUsers() {
+        return (List<User>) service.getUsers();
     }
 
     @PostMapping("/Client")
     public Client registerClient(@RequestBody Client client) {
-        return service.clientRegister(1, client.getEmail(), client.getName(), client.getPassword(), client.getDni());
+        return this.service.clientRegister(client.getEmail(), client.getName(), client.getPassword(), client.getDni());
     }
     @PostMapping("/Seller")
     public Seller registerSeller(@RequestBody Seller seller) {
-       return service.sellerRegister(1, seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban());
+       return this.service.sellerRegister(seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban());
     }
     @PostMapping("Login")
     public ResponseEntity<Object> login(@RequestBody Map<String, String> userData) {
         String email = userData.get("email");
         String password = userData.get("password");
 
-        Usuario user = service.login(email, password);
-        boolean isSeller = false;
-        List<Seller> lista = service.findAllSellers();
+        User user = service.login(email, password);
 
-        for (Seller seller : lista) {
-            if (seller.getEmail().equals(email)) {
-                isSeller = true;
-                break;
-            }
-        }
-
-        if(user != null){
+        if (user != null) {
             Map<String, Object> response = new HashMap<>();
             response.put("email", user.getEmail());
             response.put("name", user.getName());
-            response.put("isSeller", isSeller);
             response.put("password", user.getPassword());
+
+            if (user instanceof Client) {
+                Client client = (Client) user;
+                response.put("isSeller", false);
+                response.put("dni", client.getDni());
+                response.put("cif", "");
+                response.put("iban", "");
+            } else if (user instanceof Seller) {
+                Seller seller = (Seller) user;
+                response.put("isSeller", true);
+                response.put("cif", seller.getCif());
+                response.put("iban", seller.getIban());
+                response.put("dni", "");
+            }
+
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

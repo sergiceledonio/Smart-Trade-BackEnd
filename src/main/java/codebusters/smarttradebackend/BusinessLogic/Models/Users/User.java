@@ -1,16 +1,13 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Users;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
-
-import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
-public class Usuario {
+@Table(name = "user")
+public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
     private String Email;
@@ -18,12 +15,11 @@ public class Usuario {
     private String Password;
 
 
-    public Usuario() {
+    public User() {
 
     }
 
-    public Usuario(int Id, String Email, String Name, String Password) {
-        this.Id = Id;
+    public User(String Email, String Name, String Password) {
         this.Email = Email;
         this.Name = Name;
         this.Password = Password;
@@ -59,6 +55,13 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.Password = password;
+    }
+    public boolean isClient() {
+        return this instanceof Client;
+    }
+
+    public boolean isSeller() {
+        return this instanceof Seller;
     }
 
 }

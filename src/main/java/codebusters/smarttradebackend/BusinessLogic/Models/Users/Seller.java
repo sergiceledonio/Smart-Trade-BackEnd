@@ -1,13 +1,13 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Users;
 
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.Usuario;
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 
 @Entity
-public class Seller extends Usuario {
+public class Seller extends User {
     @Id
     private int Id;
     @JoinColumn(name="Email")
@@ -18,9 +18,8 @@ public class Seller extends Usuario {
     private String Iban;
 
 
-    public Seller(int Id, String Email, String Cif, String Iban) {
+    public Seller(String Email, String Cif, String Iban) {
         //super(Id, Email, Name, Password);
-        this.Id = Id;
         this.Email = Email;
         this.CIF = Cif;
         this.Iban = Iban;

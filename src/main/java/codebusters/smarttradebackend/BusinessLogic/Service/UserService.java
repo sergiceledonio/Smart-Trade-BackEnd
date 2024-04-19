@@ -3,7 +3,6 @@ package codebusters.smarttradebackend.BusinessLogic.Service;
 import codebusters.smarttradebackend.BusinessLogic.IntService.IUserService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.*;
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,19 +16,19 @@ public class UserService implements IUserService {
     private UserRepository data;
 
     @Override
-    public List<Usuario> getUsers() {
-        return (List<Usuario>) data.findAllUsers();
+    public List<User> getUsers() {
+        return (List<User>) data.findAll();
     }
 
 
     @Override
-    public Optional<Usuario> getUserById(int id) {
+    public Optional<User> getUserById(int id) {
         return data.findById(id);
     }
 
     @Override
-    public int save(Usuario u) {
-        return 0;
+    public User save(User u) {
+        return data.save(u);
     }
 
     @Override
@@ -37,13 +36,13 @@ public class UserService implements IUserService {
 
     }
 
-    public Client clientRegister(int id, String email, String name, String password, String dni) {
+    public Client clientRegister(String email, String name, String password, String dni) {
         Client client = new Client();
         try {
             if (data.findClientByEmailAndPassword(email, password) != null) {
                 throw new Exception("Cliente registrado anteriormante, el email es: " +email+ " y la contraseña: " + password);
             }
-            client.setId(id);
+
             client.setEmail(email);
             client.setName(name);
             client.setPassword(password);
@@ -55,13 +54,12 @@ public class UserService implements IUserService {
         return client;
     }
 
-    public Seller sellerRegister(int id, String email, String name, String password, String cif, String iban) {
+    public Seller sellerRegister(String email, String name, String password, String cif, String iban) {
         Seller seller = new Seller();
         try {
             if (data.findSellerByEmailAndPassword(email, password) != null) {
                 throw new Exception("Vendedor registrado anteriormante el email es: " +email+ " y la contraseña: " + password);
             }
-            seller.setId(id);
             seller.setEmail(email);
             seller.setName(name);
             seller.setPassword(password);
@@ -74,15 +72,24 @@ public class UserService implements IUserService {
         return seller;
     }
 
-    public Usuario login(String email, String password) {
-        Usuario myuser = null;
+    public User login(String email, String password) {
+        User myuser = null;
         try {
             myuser = data.findByEmailAndPassword(email, password);
+
+
             if (myuser == null) {
                 throw new Exception("Usuario no registrado");
             } else {
                 System.out.println("El usuario que quiere acceder es: " + email + " y " + password);
-                return myuser;
+                Client myClient = data.findClientByEmailAndPassword(email, password);
+                Seller mySeller = data.findSellerByEmailAndPassword(email,password);
+                if(myClient != null && myuser.getEmail().equals(myClient.getEmail())){
+                    return myClient;
+                }else{
+                    return mySeller;
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();

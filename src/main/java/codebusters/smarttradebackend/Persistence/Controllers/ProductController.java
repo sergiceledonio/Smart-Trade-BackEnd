@@ -1,7 +1,6 @@
 package codebusters.smarttradebackend.Persistence.Controllers;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.Factory.Product;
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.Usuario;
 import codebusters.smarttradebackend.BusinessLogic.Service.ProductService;
 import codebusters.smarttradebackend.BusinessLogic.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class ProductController {
     private ProductService service;
 
     @GetMapping("/Products")
-    public List<Product> getProduct() {
+    public List<Product> getProducts() {
         return (List<Product>) service.getProducts();
     }
 

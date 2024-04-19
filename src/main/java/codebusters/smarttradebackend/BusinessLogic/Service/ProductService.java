@@ -2,7 +2,6 @@ package codebusters.smarttradebackend.BusinessLogic.Service;
 
 import codebusters.smarttradebackend.BusinessLogic.IntService.IProductService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Factory.Product;
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.Usuario;
 import codebusters.smarttradebackend.Persistence.Repository.ProductRepository;
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
