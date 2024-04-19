@@ -1,8 +1,8 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
-public class TourismFactory extends ProductFactory {
-    @Override
-    public Product createProduct(String[] parameters) {
+public class TourismFactory {
+
+    public Tourism createProduct(String[] parameters) {
         if (parameters.length < 6) {
             throw new IllegalArgumentException("Insufficient parameters to create Tourism.");
         }

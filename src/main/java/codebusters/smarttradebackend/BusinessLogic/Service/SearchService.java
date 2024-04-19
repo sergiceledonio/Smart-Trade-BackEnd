@@ -73,5 +73,18 @@ public class SearchService implements ISearchService {
         return auxProducts;
     }
 
-
+    /*
+        La búsqueda más reciente esta en la posición 3 y la más antigua en la 0
+    */
+    public List<Product> storableSearch(List<Product> SearchHistory, List<Product> Products, String searchText) {
+        if (SearchHistory.size() == 3) {
+            SearchHistory.remove(0);
+        }
+        for (int i = 0; i < Products.size(); i++) {
+            if (Products.get(i).getName().toLowerCase().equals(searchText.toLowerCase())) {
+                SearchHistory.add(Products.get(i));
+            }
+        }
+        return SearchHistory;
+    }
 }

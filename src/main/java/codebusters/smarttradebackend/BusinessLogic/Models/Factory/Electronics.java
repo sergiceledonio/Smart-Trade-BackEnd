@@ -1,6 +1,6 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Factory;
 
-public class Electronics implements Product {
+public class Electronics {
     private int id;
     private String name;
     private String material;
@@ -15,10 +15,7 @@ public class Electronics implements Product {
         this.description = description;
     }
 
-    @Override
-    public String getProductType(){
-        return "Electronics";
-    }
+
 
     public int getId() {
         return id;
@@ -61,11 +58,5 @@ public class Electronics implements Product {
         this.description = description;
     }
 
-    @Override
-    public void showInfo() {
-        System.out.println("Name: " + name);
-        System.out.println("Material: " + material);
-        System.out.println("Type: " + type);
-        System.out.println("Description: " + description);
-    }
+
 }

@@ -11,4 +11,5 @@ public interface ISearchService {
     public List<Product> sortByCategory(List<Product> Products, String category);
     public List<Product> sortByAscendingCategory(List<Product> Products);
     public List<Product> sortByDescendingCategory(List<Product> Products);
+    public List<Product> storableSearch(List<Product> SearchHistory, List<Product> Products, String search);
 }
