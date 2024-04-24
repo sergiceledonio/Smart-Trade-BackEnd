@@ -1,7 +1,5 @@
 package codebusters.smarttradebackend.Persistence.Controllers;
 
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.Client;
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.BusinessLogic.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,52 +12,78 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService service;
 
-    @GetMapping("/getUsers")
+    @GetMapping("/users")
     public List<User> getUsers() {
         return (List<User>) service.getUsers();
     }
 
-    @PostMapping("/Client")
-    public Client registerClient(@RequestBody Client client) {
+    @GetMapping("/clients")
+    public List<User> getClients() {
+        return (List<User>) service.findAllClients();
+    }
+
+    @GetMapping("/sellers")
+    public List<User> getSellers() {
+        return (List<User>) service.findAllSellers();
+    }
+
+    @GetMapping("/admins")
+    public List<User> getAdmins() {
+        return (List<User>) service.findAllSellers();
+    }
+
+    @PostMapping("/newclient")
+    public User registerClient(@RequestBody User client) {
         return this.service.clientRegister(client.getEmail(), client.getName(), client.getPassword(), client.getDni());
     }
-    @PostMapping("/Seller")
-    public Seller registerSeller(@RequestBody Seller seller) {
+    @PostMapping("/newseller")
+    public User registerSeller(@RequestBody User seller) {
        return this.service.sellerRegister(seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban());
     }
-    @PostMapping("Login")
+
+    @PostMapping("/newadmin")
+    public User registerAdmin(@RequestBody User admin) {
+        return this.service.registerAdmin(admin.getEmail(), admin.getName(), admin.getPassword());
+    }
+
+
+    @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody Map<String, String> userData) {
         String email = userData.get("email");
         String password = userData.get("password");
 
-        User user = service.login(email, password);
+        Object[] user = service.login(email, password);
+        User usuario = (User) user[1];
 
-        if (user != null) {
+        if ((int) user[0] == 1) {
             Map<String, Object> response = new HashMap<>();
-            response.put("email", user.getEmail());
-            response.put("name", user.getName());
-            response.put("password", user.getPassword());
-
-            if (user instanceof Client) {
-                Client client = (Client) user;
-                response.put("isSeller", false);
-                response.put("dni", client.getDni());
-                response.put("cif", "");
-                response.put("iban", "");
-            } else if (user instanceof Seller) {
-                Seller seller = (Seller) user;
-                response.put("isSeller", true);
-                response.put("cif", seller.getCif());
-                response.put("iban", seller.getIban());
-                response.put("dni", "");
-            }
-
+            response.put("email", usuario.getEmail());
+            response.put("name", usuario.getName());
+            response.put("password", usuario.getPassword());
+            response.put("dni", usuario.getDni());
+            response.put("type", 1);
+            return ResponseEntity.ok(response);
+        } else if((int) user[0] == 2) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("email", usuario.getEmail());
+            response.put("name", usuario.getName());
+            response.put("password", usuario.getPassword());
+            response.put("cif", usuario.getCif());
+            response.put("iban", usuario.getIban());
+            response.put("type", 2);
+            return ResponseEntity.ok(response);
+        } else if ((int) user[0] == 3){
+            Map<String, Object> response = new HashMap<>();
+            response.put("email", usuario.getEmail());
+            response.put("name", usuario.getName());
+            response.put("password", usuario.getPassword());
+            response.put("type", 3);
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

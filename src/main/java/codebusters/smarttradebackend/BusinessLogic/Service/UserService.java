@@ -36,13 +36,14 @@ public class UserService implements IUserService {
 
     }
 
-    public Client clientRegister(String email, String name, String password, String dni) {
-        Client client = new Client();
+    public User clientRegister(String email, String name, String password, String dni) {
+        User client = new User();
         try {
-            if (data.findClientByEmailAndPassword(email, password) != null) {
+            if (data.findByEmailAndPassword(email, password) != null) {
                 throw new Exception("Cliente registrado anteriormante, el email es: " +email+ " y la contraseña: " + password);
             }
 
+            client.setType("client");
             client.setEmail(email);
             client.setName(name);
             client.setPassword(password);
@@ -54,12 +55,14 @@ public class UserService implements IUserService {
         return client;
     }
 
-    public Seller sellerRegister(String email, String name, String password, String cif, String iban) {
-        Seller seller = new Seller();
+    public User sellerRegister(String email, String name, String password, String cif, String iban) {
+        User seller = new User();
         try {
-            if (data.findSellerByEmailAndPassword(email, password) != null) {
+            if (data.findByEmailAndPassword(email, password) != null) {
                 throw new Exception("Vendedor registrado anteriormante el email es: " +email+ " y la contraseña: " + password);
             }
+
+            seller.setType("seller");
             seller.setEmail(email);
             seller.setName(name);
             seller.setPassword(password);
@@ -72,31 +75,58 @@ public class UserService implements IUserService {
         return seller;
     }
 
-    public User login(String email, String password) {
+    public User registerAdmin(String email, String name, String password) {
+        User seller = new User();
+        try {
+            if (data.findByEmailAndPassword(email, password) != null) {
+                throw new Exception("Administrador registrado anteriormante el email es: " +email+ " y la contraseña: " + password);
+            }
+
+            seller.setType("admin");
+            seller.setEmail(email);
+            seller.setName(name);
+            seller.setPassword(password);
+            data.save(seller);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return seller;
+    }
+
+    public Object[] login(String email, String password) {
         User myuser = null;
+        Object[] res = new Object[2];
         try {
             myuser = data.findByEmailAndPassword(email, password);
-
-
             if (myuser == null) {
-                throw new Exception("Usuario no registrado");
+                throw new Exception("EL usuario no esta registrado");
+            } else if (myuser.getType().equals("client")) {
+                System.out.println("El usuario que quiere acceder es el cliente: " + email + " y " + password);
+                res[0] = 1;
+                res[1] = myuser;
+            } else if(myuser.getType().equals("seller")){
+                System.out.println("El usuario que quiere acceder es el vendedor: " + email + " y " + password);
+                res[0] = 2;
+                res[1] = myuser;
             } else {
-                System.out.println("El usuario que quiere acceder es: " + email + " y " + password);
-                Client myClient = data.findClientByEmailAndPassword(email, password);
-                Seller mySeller = data.findSellerByEmailAndPassword(email,password);
-                if(myClient != null && myuser.getEmail().equals(myClient.getEmail())){
-                    return myClient;
-                }else{
-                    return mySeller;
-                }
-
+                System.out.println("El usuario que quiere acceder es el administrador: " + email + " y " + password);
+                res[0] = 3;
+                res[1] = myuser;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return res;
     }
-    public List<Seller> findAllSellers() {
+    public List<User> findAllSellers() {
         return  data.findAllSellers();
+    }
+
+    public List<User> findAllClients() {
+        return  data.findAllClients();
+    }
+
+    public List<User> findAllAdmins() {
+        return  data.findAllAdmins();
     }
 }

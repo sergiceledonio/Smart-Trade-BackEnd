@@ -13,56 +13,37 @@ public class Search {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    private int id;
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name="Email")
-    private User Email;
+    @Column(name = "time", unique = true)
+    private Date time;
 
-    @Column(unique = true)
-    private Date Time;
-
-    private String Text;
+    @Column(name = "text")
+    private String text;
 
 
-    public Search(User Email, Date Time, String Text, List<Product> SearchHistory) {
-        this.Email = Email;
-        this.Time = Time;
-        this.Text = Text;
+    public Search(Date Time, String Text) {
+        this.time = Time;
+        this.text = Text;
     }
 
     public Search() {
 
     }
 
-    public int getId() {
-        return this.Id;
-    }
-
-    public void setId() {
-        this.Id = Id;
-    }
-    public User getEmail() {
-        return this.Email;
-    }
-
-    public void setEmail(User Email) {
-        this.Email = Email;
-    }
-
     public Date getTime() {
-        return this.Time;
+        return time;
     }
 
-    public void setTime(Date Time) {
-        this.Time = Time;
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public String getText() {
-        return this.Text;
+        return text;
     }
 
-    public void setTime(String Text) {
-        this.Text = Text;
+    public void setText(String text) {
+        this.text = text;
     }
 }

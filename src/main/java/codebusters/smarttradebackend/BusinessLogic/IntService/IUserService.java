@@ -1,7 +1,5 @@
 package codebusters.smarttradebackend.BusinessLogic.IntService;
 
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.Client;
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.Seller;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 
 import java.util.List;
@@ -13,7 +11,7 @@ public interface IUserService {
     public Optional<User> getUserById(int id);
     public User save(User u);
     public void delete(String email);
-    public Client clientRegister(String email, String name, String password, String dni);
-    public Seller sellerRegister(String email, String name, String password, String cif, String iban);
-    public User login(String email, String password);
+    public User clientRegister(String email, String name, String password, String dni);
+    public User sellerRegister(String email, String name, String password, String cif, String iban);
+    public Object[] login(String email, String password);
 }
