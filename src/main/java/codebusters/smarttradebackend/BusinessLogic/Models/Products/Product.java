@@ -21,15 +21,15 @@ public class Product {
     @Column(name = "description", length = 200)
     private String description;
 
+    public Product() {
+
+    }
+
     public Product(String name, double price, String type, String description) {
         this.name = name;
         this.price = price;
         this.type = type;
         this.description = description;
-    }
-
-    public Product() {
-
     }
 
     public String getName() {

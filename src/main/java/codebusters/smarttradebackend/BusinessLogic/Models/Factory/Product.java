@@ -13,6 +13,10 @@ public class Product {
         this.Price = pryce;
     }
 
+    public Product() {
+
+    }
+
 
     public int getId() {
         return id;

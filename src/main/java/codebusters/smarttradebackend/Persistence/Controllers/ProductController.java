@@ -1,8 +1,7 @@
 package codebusters.smarttradebackend.Persistence.Controllers;
 
-import codebusters.smarttradebackend.BusinessLogic.Models.Factory.Product;
+import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Service.ProductService;
-import codebusters.smarttradebackend.BusinessLogic.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,20 +10,52 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 @RestController
-@RequestMapping("/Product")
+@RequestMapping("/product")
 public class ProductController {
 
     @Autowired
     private ProductService service;
 
-    @GetMapping("/Products")
+    @GetMapping("/products")
     public List<Product> getProducts() {
         return (List<Product>) service.getProducts();
     }
 
-    @PostMapping("addProducts")
-    public Product addProduct(){
-        return null;
+    @GetMapping("/books")
+    public List<Product> getBooks() {
+        return (List<Product>) service.getBooks();
     }
 
+    @GetMapping("/clothing")
+    public List<Product> getClothing() {
+        return (List<Product>) service.getClothing();
+    }
+
+    @GetMapping("/cosmetics")
+    public List<Product> getCosmetics() {
+        return (List<Product>) service.getCosmetics();
+    }
+
+    @GetMapping("/electronics")
+    public List<Product> getElectronics() {
+        return (List<Product>) service.getElectronics();
+    }
+
+    @GetMapping("/food")
+    public List<Product> getFood() {
+        return (List<Product>) service.getFood();
+    }
+
+    @GetMapping("/tourism")
+    public List<Product> getTourism() {
+        return (List<Product>) service.getTourism();
+    }
+
+    @GetMapping("/toys")
+    public List<Product> getToys() { return (List<Product>) service.getToys(); }
+
+    @PostMapping("/addProducts")
+    public Product addProduct(Product product){
+        return service.addProduct(product);
+    }
 }
