@@ -26,13 +26,13 @@ public class User {
     private String street;
 
     @Column(name = "number")
-    private int number;
+    private String number;
 
     @Column(name = "flat")
-    private int flat;
+    private String flat;
 
     @Column(name = "door")
-    private int door;
+    private String door;
 
     @Column(name = "type")
     private String type;
@@ -53,10 +53,19 @@ public class User {
 
     }
 
-    public User(String Email, String Name, String Password) {
-        this.email = Email;
-        this.name = Name;
-        this.password = Password;
+    public User(String email, String name, String password, String city, String street, String number, String flat, String door, String type, String dni, String cif, String iban) {
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.city = city;
+        this.street = street;
+        this.number = number;
+        this.flat = flat;
+        this.door = door;
+        this.type = type;
+        this.dni = dni;
+        this.cif = cif;
+        this.iban = iban;
     }
 
     public String getEmail() {
@@ -107,27 +116,27 @@ public class User {
         this.street = street;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public int getFlat() {
+    public String getFlat() {
         return flat;
     }
 
-    public void setFlat(int flat) {
+    public void setFlat(String flat) {
         this.flat = flat;
     }
 
-    public int getDoor() {
+    public String getDoor() {
         return door;
     }
 
-    public void setDoor(int door) {
+    public void setDoor(String door) {
         this.door = door;
     }
 

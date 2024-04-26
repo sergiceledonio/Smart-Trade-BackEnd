@@ -40,11 +40,11 @@ public class UserController {
 
     @PostMapping("/newclient")
     public User registerClient(@RequestBody User client) {
-        return this.service.clientRegister(client.getEmail(), client.getName(), client.getPassword(), client.getDni());
+        return this.service.clientRegister(client.getEmail(), client.getName(), client.getPassword(), client.getDni(), client.getCity(), client.getStreet(), client.getNumber(), client.getFlat(), client.getDoor());
     }
     @PostMapping("/newseller")
     public User registerSeller(@RequestBody User seller) {
-       return this.service.sellerRegister(seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban());
+       return this.service.sellerRegister(seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban(), seller.getCity(), seller.getStreet(), seller.getNumber(), seller.getFlat(), seller.getDoor());
     }
 
     @PostMapping("/newadmin")
