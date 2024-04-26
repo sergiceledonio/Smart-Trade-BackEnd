@@ -3,10 +3,7 @@ package codebusters.smarttradebackend.Persistence.Controllers;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
@@ -55,7 +52,7 @@ public class ProductController {
     public List<Product> getToys() { return (List<Product>) service.getToys(); }
 
     @PostMapping("/addProducts")
-    public Product addProduct(Product product){
-        return service.addProduct(product);
+    public Product addProduct(@RequestBody Product product){
+        return service.addProduct(product.getType(), product.getName(), product.getPrice(), product.getDescription());
     }
 }
