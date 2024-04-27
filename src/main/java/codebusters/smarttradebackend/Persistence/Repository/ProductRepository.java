@@ -10,22 +10,22 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p WHERE p.type = 'book'")
     public List<Product> findAllBooks();
 
-    @Query("SELECT u FROM User u WHERE u.type = 'clothing'")
+    @Query("SELECT p FROM Product p WHERE p.type = 'clothing'")
     public List<Product> findAllClothing();
 
-    @Query("SELECT u FROM User u WHERE u.type = 'cosmetics'")
+    @Query("SELECT p FROM Product p WHERE p.type = 'cosmetics'")
     public List<Product> findAllCosmetics();
 
-    @Query("SELECT u FROM User u WHERE u.type = 'electronics'")
+    @Query("SELECT p FROM Product p WHERE p.type = 'electronics'")
     public List<Product> findAllElectronics();
 
-    @Query("SELECT u FROM User u WHERE u.type = 'food'")
+    @Query("SELECT p FROM Product p WHERE p.type = 'food'")
     public List<Product> findAllFood();
 
-    @Query("SELECT u FROM User u WHERE u.type = 'tourism'")
+    @Query("SELECT p FROM Product p WHERE p.type = 'tourism'")
     public List<Product> findAllTourism();
 
-    @Query("SELECT u FROM User u WHERE u.type = 'toy'")
+    @Query("SELECT p FROM Product p WHERE p.type = 'toy'")
     public List<Product> findAllToys();
 
 }

@@ -23,7 +23,7 @@ public interface IProductService {
 
     public List<Product> getToys();
 
-    public Product addProduct(Product p);
+    public Product addProduct(String type, String name, double price, String description);
 
     public void deleteProduct(Product p);
 

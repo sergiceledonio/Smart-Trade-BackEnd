@@ -56,19 +56,14 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(Product p) {
+    public Product addProduct(String type, String name, double price, String description) {
         Product np = new Product();
         List<Product> products = productData.findAll();
         try {
-            for(int i = 0; i < products.size(); i++){
-                if(np.getName().equals(products.get(i).getName())) {
-                    throw new Exception("El producto ya existe");
-                }
-            }
-            np.setType(p.getType());
-            np.setName(p.getName());
-            np.setPrice(p.getPrice());
-            np.setDescription(p.getDescription());
+            np.setType(type);
+            np.setName(name);
+            np.setPrice(price);
+            np.setDescription(description);
             productData.save(np);
         } catch (Exception e) {
             e.printStackTrace();

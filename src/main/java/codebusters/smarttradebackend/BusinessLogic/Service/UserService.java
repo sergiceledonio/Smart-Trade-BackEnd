@@ -36,7 +36,7 @@ public class UserService implements IUserService {
 
     }
 
-    public User clientRegister(String email, String name, String password, String dni) {
+    public User clientRegister(String email, String name, String password, String dni, String city, String street, String number, String flat, String door) {
         User client = new User();
         try {
             if (data.findByEmailAndPassword(email, password) != null) {
@@ -48,6 +48,12 @@ public class UserService implements IUserService {
             client.setName(name);
             client.setPassword(password);
             client.setDni(dni);
+            client.setCity(city);
+            client.setStreet(street);
+            client.setNumber(number);
+            client.setFlat(flat);
+            client.setDoor(door);
+
             data.save(client);
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,17 +61,21 @@ public class UserService implements IUserService {
         return client;
     }
 
-    public User sellerRegister(String email, String name, String password, String cif, String iban) {
+    public User sellerRegister(String email, String name, String password, String cif, String iban, String city, String street, String number, String flat, String door) {
         User seller = new User();
         try {
             if (data.findByEmailAndPassword(email, password) != null) {
                 throw new Exception("Vendedor registrado anteriormante el email es: " +email+ " y la contraseña: " + password);
             }
-
             seller.setType("seller");
             seller.setEmail(email);
             seller.setName(name);
             seller.setPassword(password);
+            seller.setCity(city);
+            seller.setStreet(street);
+            seller.setNumber(number);
+            seller.setFlat(flat);
+            seller.setDoor(door);
             seller.setCif(cif);
             seller.setIban(iban);
             data.save(seller);
