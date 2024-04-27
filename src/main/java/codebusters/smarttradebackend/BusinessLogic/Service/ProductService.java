@@ -6,6 +6,7 @@ import codebusters.smarttradebackend.Persistence.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ProductService implements IProductService {
@@ -13,6 +14,7 @@ public class ProductService implements IProductService {
     @Autowired
     private ProductRepository productData;
 
+    //cambiar por attb booleanos
     @Override
     public List<Product> getProducts() {
         return (List<Product>) productData.findAll();
@@ -72,5 +74,39 @@ public class ProductService implements IProductService {
             e.printStackTrace();
         }
         return np;
+    }
+
+    @Override
+    public void deleteProduct(Product p) {
+        productData.delete(p);
+    }
+
+    public List<Product> getPendingProducts(List<Product> products) {
+        List<Product> pendingProducts = new ArrayList<Product>();
+        for (Product p : products) {
+            if (p.getPending()) {
+                pendingProducts.add(p);
+            }
+        }
+        return pendingProducts;
+    }
+
+    public List<Product> getValidatedProducts(List<Product> products) {
+        List<Product> validatedProducts = new ArrayList<Product>();
+        for (Product p : products) {
+            if (p.getValidation()) {
+                validatedProducts.add(p);
+            }
+        }
+        return validatedProducts;
+    }
+
+    public void validateProduct(Product product, boolean isValid) {
+        product.setPending(false);
+        if (isValid) {
+            product.setValidation(true);
+        } else {
+            deleteProduct(product);
+        }
     }
 }

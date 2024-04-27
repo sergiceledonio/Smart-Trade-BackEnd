@@ -1,6 +1,7 @@
 package codebusters.smarttradebackend.BusinessLogic.Service;
 
 import codebusters.smarttradebackend.BusinessLogic.IntService.IUserService;
+import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.*;
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ public class UserService implements IUserService {
     public List<User> getUsers() {
         return (List<User>) data.findAll();
     }
-
 
     @Override
     public Optional<User> getUserById(int id) {
@@ -75,22 +75,22 @@ public class UserService implements IUserService {
         return seller;
     }
 
-    public User registerAdmin(String email, String name, String password) {
-        User seller = new User();
+    public User adminRegister(String email, String name, String password) {
+        User admin = new User();
         try {
-            if (data.findByEmailAndPassword(email, password) != null) {
-                throw new Exception("Administrador registrado anteriormante el email es: " +email+ " y la contraseña: " + password);
+            if (email.equals("admin@admin.com") && password.equals("12345678")) {
+                admin.setType("admin");
+                admin.setEmail(email);
+                admin.setPassword(password);
+                admin.setName(name);
+                data.save(admin);
+            } else {
+                throw new Exception("El usuario no es administrador");
             }
-
-            seller.setType("admin");
-            seller.setEmail(email);
-            seller.setName(name);
-            seller.setPassword(password);
-            data.save(seller);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return seller;
+        return admin;
     }
 
     public Object[] login(String email, String password) {
@@ -118,6 +118,7 @@ public class UserService implements IUserService {
         }
         return res;
     }
+
     public List<User> findAllSellers() {
         return  data.findAllSellers();
     }
@@ -129,4 +130,5 @@ public class UserService implements IUserService {
     public List<User> findAllAdmins() {
         return  data.findAllAdmins();
     }
+
 }

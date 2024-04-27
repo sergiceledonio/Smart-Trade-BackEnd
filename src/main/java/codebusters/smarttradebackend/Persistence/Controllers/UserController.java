@@ -49,7 +49,7 @@ public class UserController {
 
     @PostMapping("/newadmin")
     public User registerAdmin(@RequestBody User admin) {
-        return this.service.registerAdmin(admin.getEmail(), admin.getName(), admin.getPassword());
+        return this.service.adminRegister(admin.getEmail(), admin.getName(), admin.getPassword());
     }
 
 
