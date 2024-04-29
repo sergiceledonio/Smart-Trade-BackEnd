@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProductService implements IProductService {
 
@@ -18,6 +20,16 @@ public class ProductService implements IProductService {
     @Override
     public List<Product> getProducts() {
         return (List<Product>) productData.findAll();
+    }
+
+    @Override
+    public Optional<Product> getProductById(int id) {
+        return productData.findById(id);
+    }
+
+    @Override
+    public Optional<Product> getProductByName(String name) {
+        return productData.findProductByName(name);
     }
 
     @Override
@@ -56,14 +68,15 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(String type, String name, double price, String description) {
+    public Product addProduct(String type, String name, double price, String description, boolean pend, boolean val) {
         Product np = new Product();
-        List<Product> products = productData.findAll();
         try {
             np.setType(type);
             np.setName(name);
             np.setPrice(price);
             np.setDescription(description);
+            np.setPending(pend);
+            np.setValidation(val);
             productData.save(np);
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,6 +89,7 @@ public class ProductService implements IProductService {
         productData.delete(p);
     }
 
+    @Override
     public List<Product> getPendingProducts(List<Product> products) {
         List<Product> pendingProducts = new ArrayList<Product>();
         for (Product p : products) {
@@ -86,6 +100,7 @@ public class ProductService implements IProductService {
         return pendingProducts;
     }
 
+    @Override
     public List<Product> getValidatedProducts(List<Product> products) {
         List<Product> validatedProducts = new ArrayList<Product>();
         for (Product p : products) {
@@ -96,12 +111,15 @@ public class ProductService implements IProductService {
         return validatedProducts;
     }
 
+    @Override
     public void validateProduct(Product product, boolean isValid) {
-        product.setPending(false);
-        if (isValid) {
-            product.setValidation(true);
-        } else {
-            deleteProduct(product);
-        }
+            Optional<Product> p = getProductByName(product.getName());
+            if(p.isPresent()) {
+                p.ifPresent(obj -> obj.setPending(false));
+                p.ifPresent(obj -> obj.setValidation(true));
+                productData.save(p.get());
+            }
     }
+
+
 }

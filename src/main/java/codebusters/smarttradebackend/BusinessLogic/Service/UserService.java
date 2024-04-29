@@ -1,7 +1,6 @@
 package codebusters.smarttradebackend.BusinessLogic.Service;
 
 import codebusters.smarttradebackend.BusinessLogic.IntService.IUserService;
-import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.*;
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +35,7 @@ public class UserService implements IUserService {
 
     }
 
+    @Override
     public User clientRegister(String email, String name, String password, String dni, String city, String street, String number, String flat, String door) {
         User client = new User();
         try {
@@ -61,6 +61,7 @@ public class UserService implements IUserService {
         return client;
     }
 
+    @Override
     public User sellerRegister(String email, String name, String password, String cif, String iban, String city, String street, String number, String flat, String door) {
         User seller = new User();
         try {
@@ -85,6 +86,7 @@ public class UserService implements IUserService {
         return seller;
     }
 
+    @Override
     public User adminRegister(String email, String name, String password) {
         User admin = new User();
         try {
@@ -103,6 +105,7 @@ public class UserService implements IUserService {
         return admin;
     }
 
+    @Override
     public Object[] login(String email, String password) {
         User myuser = null;
         Object[] res = new Object[2];

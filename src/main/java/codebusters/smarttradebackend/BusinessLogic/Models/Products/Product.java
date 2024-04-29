@@ -31,13 +31,13 @@ public class Product {
 
     }
 
-    public Product(String name, double price, String type, String description) {
+    public Product(String name, double price, String type, String description, boolean pend, boolean val) {
         this.name = name;
         this.price = price;
         this.type = type;
         this.description = description;
-        this.pending = true;
-        this.validation = false;
+        this.pending = pend;
+        this.validation = val;
     }
 
     public String getName() {

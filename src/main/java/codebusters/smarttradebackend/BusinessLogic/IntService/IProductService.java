@@ -4,10 +4,15 @@ import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IProductService {
 
     public List<Product> getProducts();
+
+    public Optional<Product> getProductById(int id);
+
+    public Optional<Product> getProductByName(String name);
 
     public List<Product> getBooks();
 
@@ -23,7 +28,7 @@ public interface IProductService {
 
     public List<Product> getToys();
 
-    public Product addProduct(String type, String name, double price, String description);
+    Product addProduct(String type, String name, double price, String description, boolean pend, boolean val);
 
     public void deleteProduct(Product p);
 

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -16,6 +18,16 @@ public class ProductController {
     @GetMapping("/products")
     public List<Product> getProducts() {
         return (List<Product>) service.getProducts();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Product> getProductById(@PathVariable int id) {
+        return service.getProductById(id);
+    }
+
+    @GetMapping("/{name}")
+    public Optional<Product> getProductByName(@PathVariable String name) {
+        return service.getProductByName(name);
     }
 
     @GetMapping("/books")
@@ -53,6 +65,23 @@ public class ProductController {
 
     @PostMapping("/addProducts")
     public Product addProduct(@RequestBody Product product){
-        return service.addProduct(product.getType(), product.getName(), product.getPrice(), product.getDescription());
+        return service.addProduct(product.getType(), product.getName(), product.getPrice(), product.getDescription(), product.getPending(), product.getValidation());
+    }
+
+    @GetMapping("/pending")
+    public List<Product> getPendingProducts() {
+        return service.getPendingProducts(this.getProducts());
+    }
+
+    @GetMapping("/validated")
+    public List<Product> getValidatedProducts() {
+        return service.getValidatedProducts(this.getProducts());
+    }
+
+    @GetMapping("/validate")
+    public boolean validateProduct(@RequestBody Product product, @RequestParam boolean valid) {
+        service.validateProduct(product, valid);
+        //Si el objeto se ha borrado, devolvera false, si se ha validado devolvera true
+        return valid;
     }
 }
