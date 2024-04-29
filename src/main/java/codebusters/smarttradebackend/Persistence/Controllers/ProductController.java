@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping("/{name}")
-    public Optional<Product> getProductByName(@PathVariable String name) {
+    public Optional<Product> getProductByName(@RequestParam String name) {
         return service.getProductByName(name);
     }
 
@@ -66,6 +66,12 @@ public class ProductController {
     @PostMapping("/addProducts")
     public Product addProduct(@RequestBody Product product){
         return service.addProduct(product.getType(), product.getName(), product.getPrice(), product.getDescription(), product.getPending(), product.getValidation());
+    }
+
+    @DeleteMapping("/delete/{nombre}")
+    public void deleteByName(@RequestParam String name) {
+        Optional<Product> p = getProductByName(name);
+        service.deleteProduct(p.get());
     }
 
     @GetMapping("/pending")
