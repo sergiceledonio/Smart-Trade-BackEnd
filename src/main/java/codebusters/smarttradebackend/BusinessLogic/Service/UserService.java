@@ -104,7 +104,6 @@ public class UserService implements IUserService {
         }
         return admin;
     }
-
     @Override
     public Object[] login(String email, String password) {
         User myuser = null;

@@ -63,9 +63,19 @@ public class ProductController {
     @GetMapping("/toys")
     public List<Product> getToys() { return (List<Product>) service.getToys(); }
 
-    @PostMapping("/addProducts")
-    public Product addProduct(@RequestBody Product product){
-        return service.addProduct(product.getType(), product.getName(), product.getPrice(), product.getDescription(), product.getPending(), product.getValidation());
+    @PostMapping("/newproducts")
+    public String addProduct(@RequestBody Product request) {
+        String type = request.getType();
+        String name = request.getName();
+        double price = request.getPrice();
+        String description = request.getDescription();
+        boolean pending = request.getPending();
+        boolean validation = request.getValidation();
+
+        service.addProduct(type, name, price, description, pending, validation);
+
+
+        return "Producto recibido: " + name;
     }
 
     @DeleteMapping("/delete/{nombre}")
