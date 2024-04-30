@@ -68,6 +68,11 @@ public class UserController {
             response.put("password", usuario.getPassword());
             response.put("dni", usuario.getDni());
             response.put("type", 1);
+            response.put("city", usuario.getCity());
+            response.put("street", usuario.getStreet());
+            response.put("num", usuario.getNumber());
+            response.put("door", usuario.getDoor());
+            response.put("flat", usuario.getFlat());
             return ResponseEntity.ok(response);
         } else if((int) user[0] == 2) {
             Map<String, Object> response = new HashMap<>();

@@ -86,21 +86,21 @@ public class UserService implements IUserService {
     }
 
     public User registerAdmin(String email, String name, String password) {
-        User seller = new User();
+        User admin = new User();
         try {
             if (data.findByEmailAndPassword(email, password) != null) {
                 throw new Exception("Administrador registrado anteriormante el email es: " +email+ " y la contraseña: " + password);
             }
 
-            seller.setType("admin");
-            seller.setEmail(email);
-            seller.setName(name);
-            seller.setPassword(password);
-            data.save(seller);
+            admin.setType("admin");
+            admin.setEmail(email);
+            admin.setName(name);
+            admin.setPassword(password);
+            data.save(admin);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return seller;
+        return admin;
     }
 
     public Object[] login(String email, String password) {
