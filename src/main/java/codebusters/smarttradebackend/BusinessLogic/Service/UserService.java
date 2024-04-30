@@ -20,7 +20,6 @@ public class UserService implements IUserService {
         return (List<User>) data.findAll();
     }
 
-
     @Override
     public Optional<User> getUserById(int id) {
         return data.findById(id);
@@ -36,6 +35,7 @@ public class UserService implements IUserService {
 
     }
 
+    @Override
     public User clientRegister(String email, String name, String password, String dni, String city, String street, String number, String flat, String door) {
         User client = new User();
         try {
@@ -61,6 +61,7 @@ public class UserService implements IUserService {
         return client;
     }
 
+    @Override
     public User sellerRegister(String email, String name, String password, String cif, String iban, String city, String street, String number, String flat, String door) {
         User seller = new User();
         try {
@@ -85,24 +86,26 @@ public class UserService implements IUserService {
         return seller;
     }
 
-    public User registerAdmin(String email, String name, String password) {
+    @Override
+    public User adminRegister(String email, String name, String password) {
         User admin = new User();
         try {
-            if (data.findByEmailAndPassword(email, password) != null) {
-                throw new Exception("Administrador registrado anteriormante el email es: " +email+ " y la contraseña: " + password);
+            if (email.equals("admin@admin.com") && password.equals("12345678")) {
+                admin.setType("admin");
+                admin.setEmail(email);
+                admin.setPassword(password);
+                admin.setName(name);
+                data.save(admin);
+            } else {
+                throw new Exception("El usuario no es administrador");
             }
-
-            admin.setType("admin");
-            admin.setEmail(email);
-            admin.setName(name);
-            admin.setPassword(password);
-            data.save(admin);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return admin;
     }
 
+    @Override
     public Object[] login(String email, String password) {
         User myuser = null;
         Object[] res = new Object[2];
@@ -128,6 +131,7 @@ public class UserService implements IUserService {
         }
         return res;
     }
+
     public List<User> findAllSellers() {
         return  data.findAllSellers();
     }
@@ -139,4 +143,5 @@ public class UserService implements IUserService {
     public List<User> findAllAdmins() {
         return  data.findAllAdmins();
     }
+
 }

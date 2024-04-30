@@ -48,7 +48,6 @@ public class User {
     @Column(name = "iban")
     private String iban;
 
-
     public User() {
 
     }

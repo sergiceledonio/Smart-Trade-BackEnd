@@ -21,15 +21,23 @@ public class Product {
     @Column(name = "description", length = 200)
     private String description;
 
+    @Column(name = "pending")
+    private boolean pending;
+
+    @Column(name = "validation")
+    private boolean validation;
+
     public Product() {
 
     }
 
-    public Product(String name, double price, String type, String description) {
+    public Product(String name, double price, String type, String description, boolean pend, boolean val) {
         this.name = name;
         this.price = price;
         this.type = type;
         this.description = description;
+        this.pending = pend;
+        this.validation = val;
     }
 
     public String getName() {
@@ -63,4 +71,12 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public boolean getPending() { return pending; }
+
+    public void setPending(boolean pending) { this.pending = pending; }
+
+    public boolean getValidation() { return validation; }
+
+    public void setValidation(boolean validation) { this.validation = validation; }
 }

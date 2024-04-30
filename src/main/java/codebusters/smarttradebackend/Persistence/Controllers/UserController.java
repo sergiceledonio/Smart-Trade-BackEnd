@@ -1,5 +1,6 @@
 package codebusters.smarttradebackend.Persistence.Controllers;
 
+import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.BusinessLogic.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class UserController {
 
     @PostMapping("/newadmin")
     public User registerAdmin(@RequestBody User admin) {
-        return this.service.registerAdmin(admin.getEmail(), admin.getName(), admin.getPassword());
+        return this.service.adminRegister(admin.getEmail(), admin.getName(), admin.getPassword());
     }
 
 

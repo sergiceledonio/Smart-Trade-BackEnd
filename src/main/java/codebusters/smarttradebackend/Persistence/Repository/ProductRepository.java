@@ -3,10 +3,16 @@ package codebusters.smarttradebackend.Persistence.Repository;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
+
+    @Query("SELECT p FROM Product p WHERE p.name = :nombre")
+    public Optional<Product> findProductByName(@Param("nombre") String nombre);
+
     @Query("SELECT p FROM Product p WHERE p.type = 'book'")
     public List<Product> findAllBooks();
 
@@ -27,5 +33,11 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("SELECT p FROM Product p WHERE p.type = 'toy'")
     public List<Product> findAllToys();
+
+    @Query("SELECT p FROM Product p WHERE p.pending = true")
+    public List<Product> findPendingProducts();
+
+    @Query("SELECT p FROM Product p WHERE p.validation = true")
+    public List<Product> findValProducts();
 
 }
