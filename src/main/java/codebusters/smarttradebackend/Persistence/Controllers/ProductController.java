@@ -20,12 +20,12 @@ public class ProductController {
         return (List<Product>) service.getProducts();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getbyid/{id}")
     public Optional<Product> getProductById(@PathVariable int id) {
         return service.getProductById(id);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/getbyname/{name}")
     public Optional<Product> getProductByName(@RequestParam String name) {
         return service.getProductByName(name);
     }
