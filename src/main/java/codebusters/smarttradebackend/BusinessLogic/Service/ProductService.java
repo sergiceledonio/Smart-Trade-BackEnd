@@ -6,6 +6,7 @@ import codebusters.smarttradebackend.Persistence.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -121,5 +122,15 @@ public class ProductService implements IProductService {
             }
     }
 
-
+    @Override
+    public String[] getAtrib(Product p) {
+        String[] data = new String[6];
+        data[0] = p.getName();
+        data[1] = String.valueOf(p.getPrice());
+        data[2] = p.getType();
+        data[3] = p.getDescription();
+        data[4] = String.valueOf(p.getPending());
+        data[5] = String.valueOf(p.getValidation());
+        return data;
+    }
 }

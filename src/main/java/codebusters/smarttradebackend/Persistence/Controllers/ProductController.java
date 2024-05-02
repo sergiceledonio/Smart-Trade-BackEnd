@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping("/getbyname/{name}")
-    public Optional<Product> getProductByName(@RequestParam String name) {
+    public Optional<Product> getProductByName(@PathVariable String name) {
         return service.getProductByName(name);
     }
 
@@ -99,5 +99,10 @@ public class ProductController {
         service.validateProduct(product, valid);
         //Si el objeto se ha borrado, devolvera false, si se ha validado devolvera true
         return valid;
+    }
+
+    @GetMapping("/atributos")
+    public String[] getAtribs(@RequestBody Product product) {
+        return service.getAtrib(product);
     }
 }

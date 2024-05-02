@@ -3,6 +3,7 @@ package codebusters.smarttradebackend.BusinessLogic.IntService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 
 
+import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,4 +38,6 @@ public interface IProductService {
     public List<Product> getValidatedProducts(List<Product> products);
 
     public void validateProduct(Product product, boolean isValid);
+
+    public String[] getAtrib(Product p);
 }
