@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    @Query("SELECT p FROM Product p WHERE p.name = :nombre")
+    @Query("SELECT p FROM Product p WHERE LOWER(p.name) LIKE %:nombre%")
     public Optional<Product> findProductByName(@Param("nombre") String nombre);
 
     @Query("SELECT p FROM Product p WHERE p.type = 'book'")
