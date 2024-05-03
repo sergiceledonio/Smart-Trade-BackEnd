@@ -124,13 +124,14 @@ public class ProductService implements IProductService {
 
     @Override
     public String[] getAtrib(Product p) {
-        String[] data = new String[6];
-        data[0] = p.getName();
-        data[1] = String.valueOf(p.getPrice());
-        data[2] = p.getType();
-        data[3] = p.getDescription();
-        data[4] = String.valueOf(p.getPending());
-        data[5] = String.valueOf(p.getValidation());
+        String[] data = new String[7];
+        data[0] = String.valueOf(p.getId());
+        data[1] = p.getName();
+        data[2] = String.valueOf(p.getPrice());
+        data[3] = p.getType();
+        data[4] = p.getDescription();
+        data[5] = String.valueOf(p.getPending());
+        data[6] = String.valueOf(p.getValidation());
         return data;
     }
 }

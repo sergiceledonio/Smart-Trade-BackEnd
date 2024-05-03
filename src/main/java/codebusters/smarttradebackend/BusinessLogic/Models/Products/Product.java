@@ -40,6 +40,10 @@ public class Product {
         this.validation = val;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public String getName() {
         return this.name;
     }
