@@ -117,9 +117,13 @@ public class ProductService implements IProductService {
     public void validateProduct(Product product, boolean isValid) {
             Optional<Product> p = getProductByName(product.getName());
             if(p.isPresent()) {
-                p.ifPresent(obj -> obj.setPending(false));
-                p.ifPresent(obj -> obj.setValidation(true));
-                productData.save(p.get());
+                if(isValid) {
+                    p.ifPresent(obj -> obj.setPending(false));
+                    p.ifPresent(obj -> obj.setValidation(true));
+                    productData.save(p.get());
+                } else {
+                    deleteProduct(p.get());
+                }
             }
     }
 
