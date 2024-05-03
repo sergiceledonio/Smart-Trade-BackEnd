@@ -5,7 +5,14 @@ public class ProductFactory {
         if (parameters.length < 4) {
             throw new IllegalArgumentException("Insufficient parameters to create Product.");
         }
-        Product a = new Product(parameters[0], Double.parseDouble(parameters[1]), parameters[2], parameters[3], pend, val);
+        //Product a = new Product(parameters[0], Double.parseDouble(parameters[1]), parameters[2], parameters[3], pend, val);
+        Product a = new Product();
+        a.setName(parameters[0]);
+        a.setPrice(Double.parseDouble(parameters[1]));
+        a.setType(parameters[2]);
+        a.setDescription(parameters[3]);
+        a.setPending(pend);
+        a.setValidation(val);
         return a;
     }
     public codebusters.smarttradebackend.BusinessLogic.Models.Products.Product createProduct(String[] parameters)
@@ -13,7 +20,14 @@ public class ProductFactory {
         if (parameters.length < 4) {
             throw new IllegalArgumentException("Insufficient parameters to create Product.");
         }
-        Product a = new Product(parameters[0], Double.parseDouble(parameters[1]), parameters[2], parameters[3], true, false);
+        Product a = new Product();
+        a.setName(parameters[0]);
+        a.setPrice(Double.parseDouble(parameters[1]));
+        a.setType(parameters[2]);
+        a.setDescription(parameters[3]);
+        a.setPending(true);
+        a.setValidation(false);
+        System.out.println(a.getName());
         return a;
     }
 
