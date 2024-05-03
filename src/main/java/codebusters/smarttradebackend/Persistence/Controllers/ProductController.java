@@ -78,10 +78,9 @@ public class ProductController {
         return "Producto recibido: " + name;
     }
 
-    @DeleteMapping("/delete/{nombre}")
-    public void deleteByName(@RequestParam String name) {
-        Optional<Product> p = getProductByName(name);
-        service.deleteProduct(p.get());
+    @DeleteMapping("/delete")
+    public void deleteByName(@RequestBody Product p) {
+        service.deleteProduct(p);
     }
 
     @GetMapping("/pending")
