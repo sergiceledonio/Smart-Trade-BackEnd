@@ -1,6 +1,7 @@
 package codebusters.smarttradebackend.Persistence.Controllers;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
+import codebusters.smarttradebackend.BusinessLogic.Models.Products.ProductFactory;
 import codebusters.smarttradebackend.BusinessLogic.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -71,9 +72,9 @@ public class ProductController {
         String description = request.getDescription();
         boolean pending = request.getPending();
         boolean validation = request.getValidation();
+        ProductFactory fact = new ProductFactory();
 
-        service.addProduct(type, name, price, description, pending, validation);
-
+        Product p = fact.createProduct(new String[]{type, name, Double.toString(price), description}, pending, validation);
 
         return "Producto recibido: " + name;
     }

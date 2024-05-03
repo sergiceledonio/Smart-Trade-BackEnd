@@ -2,6 +2,7 @@ package codebusters.smarttradebackend.BusinessLogic.Service;
 
 import codebusters.smarttradebackend.BusinessLogic.IntService.IProductService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
+import codebusters.smarttradebackend.BusinessLogic.Models.Products.ProductFactory;
 import codebusters.smarttradebackend.Persistence.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,20 +70,10 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(String type, String name, double price, String description, boolean pend, boolean val) {
-        Product np = new Product();
-        try {
-            np.setType(type);
-            np.setName(name);
-            np.setPrice(price);
-            np.setDescription(description);
-            np.setPending(pend);
-            np.setValidation(val);
-            productData.save(np);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return np;
+    public Product addProduct(String type, String name, String price, String description) {
+        ProductFactory fact = new ProductFactory();
+        Product np2 = fact.createProduct(new String[]{type, name, price, description});
+        return np2;
     }
 
     @Override
