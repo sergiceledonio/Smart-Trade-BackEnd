@@ -73,6 +73,8 @@ public class ProductService implements IProductService {
     public Product addProduct(String name, String price, String type, String description) {
         ProductFactory fact = new ProductFactory();
         Product np2 = fact.createProduct(new String[]{name, price, type, description});
+        productData.save(np2);
+
         return np2;
     }
 
@@ -106,15 +108,12 @@ public class ProductService implements IProductService {
 
     @Override
     public void validateProduct(Product product, boolean isValid) {
-            Optional<Product> p = getProductByName(product.getName());
-            if(p.isPresent()) {
-                if(isValid) {
-                    p.ifPresent(obj -> obj.setPending(false));
-                    p.ifPresent(obj -> obj.setValidation(true));
-                    productData.save(p.get());
-                } else {
-                    deleteProduct(p.get());
-                }
+            if(isValid){
+                product.setPending(false);
+                product.setValidation(true);
+                productData.save(product);
+            }else{
+                deleteProduct(product);
             }
     }
 
