@@ -95,10 +95,9 @@ public class ProductController {
     }
 
     @GetMapping("/validate")
-    public boolean validateProduct(@RequestBody Product product, @RequestParam boolean valid) {
-        service.validateProduct(product, valid);
-        //Si el objeto se ha borrado, devolvera false, si se ha validado devolvera true
-        return valid;
+    public void validateProduct(@RequestBody String name, @RequestParam boolean valid) {
+        Optional<Product> product = service.getProductByName(name);
+        service.validateProduct(product.get(), valid);
     }
 
     @GetMapping("/atributos")
