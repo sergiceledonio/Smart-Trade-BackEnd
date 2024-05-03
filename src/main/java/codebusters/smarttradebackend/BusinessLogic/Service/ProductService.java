@@ -70,9 +70,9 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(String type, String name, String price, String description) {
+    public Product addProduct(String name, String price, String type, String description) {
         ProductFactory fact = new ProductFactory();
-        Product np2 = fact.createProduct(new String[]{type, name, price, description});
+        Product np2 = fact.createProduct(new String[]{name, price, type, description});
         return np2;
     }
 
