@@ -74,7 +74,7 @@ public class ProductController {
         boolean validation = request.getValidation();
         ProductFactory fact = new ProductFactory();
 
-        Product p = fact.createProduct(new String[]{type, name, Double.toString(price), description}, pending, validation);
+        Product p = fact.createProduct(new String[]{name, Double.toString(price), type, description}, pending, validation);
 
         return "Producto recibido: " + name;
     }
