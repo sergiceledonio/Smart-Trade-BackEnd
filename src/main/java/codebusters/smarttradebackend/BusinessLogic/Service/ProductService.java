@@ -70,14 +70,18 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(String name, String price, String type, String description) {
-        ProductFactory fact = new ProductFactory();
-        Product np2 = fact.createProduct(new String[]{name, price, type, description});
-        productData.save(np2);
-
-        return np2;
+    public Product addProduct(String type, String name, double price, String description, boolean pend, boolean val) {
+        ProductFactory fab = new ProductFactory();
+        Product np = fab.createProduct(new String[]{name, Double.toString(price), type, description });
+        try {
+            np.setPending(pend);
+            np.setValidation(val);
+            productData.save(np);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return np;
     }
-
     @Override
     public void deleteProduct(Product p) {
         Optional<Product> deleted = getProductByName(p.getName());
@@ -108,13 +112,13 @@ public class ProductService implements IProductService {
 
     @Override
     public void validateProduct(Product product, boolean isValid) {
-            if(isValid){
-                product.setPending(false);
-                product.setValidation(true);
-                productData.save(product);
-            }else{
-                deleteProduct(product);
-            }
+        if(isValid){
+            product.setPending(false);
+            product.setValidation(true);
+            productData.save(product);
+        }else{
+            deleteProduct(product);
+        }
     }
 
     @Override

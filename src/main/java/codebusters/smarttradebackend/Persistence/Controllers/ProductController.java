@@ -72,6 +72,7 @@ public class ProductController {
         String description = request.getDescription();
         boolean pending = request.getPending();
         boolean validation = request.getValidation();
+        service.addProduct(type, name, price, description, pending, validation);
 
         service.addProduct(type, name, price, description, pending, validation);
         return "Producto recibido: " + name;
