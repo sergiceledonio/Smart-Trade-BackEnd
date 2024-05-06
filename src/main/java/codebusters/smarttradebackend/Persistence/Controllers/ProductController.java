@@ -75,7 +75,6 @@ public class ProductController {
         ProductFactory fact = new ProductFactory();
 
         Product p = fact.createProduct(new String[]{name, Double.toString(price), type, description}, pending, validation);
-
         return "Producto recibido: " + name;
     }
 

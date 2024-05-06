@@ -109,13 +109,13 @@ public class ProductService implements IProductService {
 
     @Override
     public void validateProduct(Product product, boolean isValid) {
-            if(isValid){
-                product.setPending(false);
-                product.setValidation(true);
-                productData.save(product);
-            }else{
-                deleteProduct(product);
-            }
+        if(isValid){
+            product.setPending(false);
+            product.setValidation(true);
+            productData.save(product);
+        }else{
+            deleteProduct(product);
+        }
     }
 
     @Override
