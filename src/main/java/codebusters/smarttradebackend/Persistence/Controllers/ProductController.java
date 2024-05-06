@@ -94,7 +94,7 @@ public class ProductController {
         return service.getValidatedProducts(this.getProducts());
     }
 
-    @GetMapping("/validate")
+    @PostMapping("/validate")
     public void validateProduct(@RequestBody String name, @RequestBody boolean valid) {
         Optional<Product> product = service.getProductByName(name);
         service.validateProduct(product.get(), valid);
