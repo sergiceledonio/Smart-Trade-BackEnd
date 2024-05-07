@@ -66,6 +66,7 @@ public class ProductController {
 
     @PostMapping("/newproducts")
     public String addProduct(@RequestBody Product request) {
+        System.out.println("El producto está siendo guardado");
         String type = request.getType();
         String name = request.getName();
         double price = request.getPrice();
