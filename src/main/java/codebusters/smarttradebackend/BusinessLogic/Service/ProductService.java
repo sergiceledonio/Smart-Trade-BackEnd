@@ -70,10 +70,16 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(String name, String price, String type, String description) {
+    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation) {
         ProductFactory fact = new ProductFactory();
-        Product np2;
-        np2 = fact.createProduct(new String[]{name, price, type, description});
+        Product np2 = fact.createProduct(new String[]{name, Double.toString(price), type, description});
+
+        try{
+            np2.setPending(pending);
+            np2.setValidation(validation);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         productData.save(np2);
 
         return np2;

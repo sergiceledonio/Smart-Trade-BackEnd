@@ -69,13 +69,12 @@ public class ProductController {
         System.out.println("El producto está siendo guardado");
         String type = request.getType();
         String name = request.getName();
-        double price = request.getPrice();
+        Double price = request.getPrice();
         String description = request.getDescription();
         boolean pending = request.getPending();
         boolean validation = request.getValidation();
-        ProductFactory fact = new ProductFactory();
 
-        Product p = fact.createProduct(new String[]{name, Double.toString(price), type, description}, pending, validation);
+        service.addProduct(name, price, type, description, pending, validation);
         return "Producto recibido: " + name;
     }
 
