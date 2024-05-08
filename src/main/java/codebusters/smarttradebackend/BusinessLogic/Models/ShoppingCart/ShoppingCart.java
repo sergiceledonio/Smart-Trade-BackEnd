@@ -22,6 +22,10 @@ public class ShoppingCart {
 
     }
 
+    public int getId() {
+        return id;
+    }
+
     public User getUser() {
         return user;
     }

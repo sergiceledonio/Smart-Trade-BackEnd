@@ -67,6 +67,10 @@ public class User {
         this.iban = iban;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getEmail() {
         return this.email;
     }

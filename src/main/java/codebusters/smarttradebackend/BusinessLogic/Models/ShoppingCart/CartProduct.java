@@ -33,6 +33,10 @@ public class CartProduct {
 
     }
 
+    public int getId() {
+        return id;
+    }
+
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
