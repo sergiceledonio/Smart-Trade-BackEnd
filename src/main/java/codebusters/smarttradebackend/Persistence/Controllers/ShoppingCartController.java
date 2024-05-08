@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/cart")
@@ -20,7 +21,8 @@ public class ShoppingCartController {
     private ShoppingService shoppingService;
 
     @GetMapping("/cartProducts")
-    List<Product> getShoppingProducts(@RequestBody int user_id) {
+    List<Product> getShoppingProducts(@RequestBody Map<String, Integer> request) {
+        int user_id = request.get("user_id");
         return shoppingService.getShoppingProducts(user_id);
     }
 }
