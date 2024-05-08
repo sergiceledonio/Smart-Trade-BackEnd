@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Integer>{
 
@@ -14,7 +15,7 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Inte
     List<Product> findShoppingProductsByUserId(int userid);
 
     @Query("SELECT s FROM ShoppingCart s, User u WHERE s.user.id = :user_id")
-    ShoppingCart findByUserId(int user_id);
+    Optional<ShoppingCart> findByUserId(int user_id);
 
     @Query("SELECT cp FROM CartProduct cp, ShoppingCart sc WHERE cp.shoppingCart.id = :sc_id")
     List<CartProduct> getCartProductsById(int sc_id);
