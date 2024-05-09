@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -94,9 +95,15 @@ public class ProductController {
     }
 
     @PostMapping("/validate")
-    public void validateProduct(@RequestBody String name, @RequestBody boolean valid) {
-        Optional<Product> product = service.getProductByName(name);
-        service.validateProduct(product.get(), valid);
+    public void validateProduct(@RequestBody Map<String, Object> request) {
+        int id = (int) request.get("id");
+        boolean valid = (boolean) request.get("valid");
+        Optional<Product> product = service.getProductById(id);
+        if (product.isPresent()) {
+            service.validateProduct(product.get(), valid);
+        } else {
+            throw new IllegalArgumentException("Product not found with name: " + id);
+        }
     }
 
     @GetMapping("/atributos")
