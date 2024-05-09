@@ -18,9 +18,8 @@ public class ShoppingCartController {
     private ShoppingService shoppingService;
 
     @GetMapping("/cartProducts")
-    public List<Product> getShoppingProducts(@RequestBody Map<String, Integer> request) {
-        int user_id = request.get("user_id");
-        return shoppingService.getShoppingProducts(user_id);
+    public List<Product> getShoppingProducts(@RequestParam("user_id") int userId) {
+        return shoppingService.getShoppingProducts(userId);
     }
 
     @PostMapping("/newCartProduct")

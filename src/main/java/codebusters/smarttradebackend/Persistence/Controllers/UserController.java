@@ -74,6 +74,7 @@ public class UserController {
             response.put("num", usuario.getNumber());
             response.put("door", usuario.getDoor());
             response.put("flat", usuario.getFlat());
+            response.put("id", usuario.getId());
             return ResponseEntity.ok(response);
         } else if((int) user[0] == 2) {
             Map<String, Object> response = new HashMap<>();
@@ -83,6 +84,7 @@ public class UserController {
             response.put("cif", usuario.getCif());
             response.put("iban", usuario.getIban());
             response.put("type", 2);
+            response.put("id", usuario.getId());
             return ResponseEntity.ok(response);
         } else if ((int) user[0] == 3){
             Map<String, Object> response = new HashMap<>();
@@ -90,6 +92,7 @@ public class UserController {
             response.put("name", usuario.getName());
             response.put("password", usuario.getPassword());
             response.put("type", 3);
+            response.put("id", usuario.getId());
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
