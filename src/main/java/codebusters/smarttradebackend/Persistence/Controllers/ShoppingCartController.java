@@ -28,4 +28,19 @@ public class ShoppingCartController {
         int amount = request.get("amount");
         shoppingService.addShoppingProduct(user_id, p_id, amount);
     }
+
+    @DeleteMapping("/delete")
+    public void deleteCartProduct(@RequestBody Map<String, Integer> request) {
+        int p_id = request.get("p_id");
+        int u_id = request.get("u_id");
+        shoppingService.delete(p_id, u_id);
+    }
+
+    @PostMapping("/newAmount")
+    public void changeAmount(@RequestBody Map<String, Integer> request) {
+        int n = request.get("n");
+        int p_id = request.get("p_id");
+        int u_id = request.get("u_id");
+        shoppingService.changeAmount(n, p_id, u_id);
+    }
 }
