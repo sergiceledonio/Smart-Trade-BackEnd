@@ -11,4 +11,6 @@ public interface IShoppingService {
     public void delete(int p_id, int sp_id);
 
     void changeAmount(int n, int p_id, int u_id);
+
+    int amount(int p_id, int u_id);
 }

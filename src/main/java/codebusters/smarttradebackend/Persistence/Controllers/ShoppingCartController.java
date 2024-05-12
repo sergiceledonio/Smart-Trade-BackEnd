@@ -60,4 +60,12 @@ public class ShoppingCartController {
 
         shoppingService.changeAmount(n, p_id, u_id);
     }
+
+    @GetMapping("/amount")
+    public int amount(@RequestBody Map<String, Object> request) {
+        String p_name = (String) request.get("p_name");
+        int u_id = (int)request.get("u_id");
+        int p_id = productService.getProductByName(p_name).get().getId();
+        return shoppingService.amount(p_id, u_id);
+    }
 }
