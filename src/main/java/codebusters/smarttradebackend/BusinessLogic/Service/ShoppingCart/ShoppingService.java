@@ -1,4 +1,4 @@
-package codebusters.smarttradebackend.BusinessLogic.Service;
+package codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart;
 
 import codebusters.smarttradebackend.BusinessLogic.IntService.IShoppingService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
@@ -11,7 +11,6 @@ import codebusters.smarttradebackend.Persistence.Repository.ShoppingProductRepos
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import codebusters.smarttradebackend.BusinessLogic.Service.ProductService;
 
 import java.util.List;
 import java.util.Optional;

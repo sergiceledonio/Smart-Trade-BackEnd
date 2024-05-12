@@ -1,4 +1,4 @@
-package codebusters.smarttradebackend.BusinessLogic.Service;
+package codebusters.smarttradebackend.BusinessLogic.Service.User;
 
 import codebusters.smarttradebackend.BusinessLogic.IntService.IUserService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.*;

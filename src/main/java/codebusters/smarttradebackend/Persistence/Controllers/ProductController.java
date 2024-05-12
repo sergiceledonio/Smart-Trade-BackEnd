@@ -1,8 +1,7 @@
 package codebusters.smarttradebackend.Persistence.Controllers;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
-import codebusters.smarttradebackend.BusinessLogic.Models.Products.ProductFactory;
-import codebusters.smarttradebackend.BusinessLogic.Service.ProductService;
+import codebusters.smarttradebackend.BusinessLogic.Service.Product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package codebusters.smarttradebackend.BusinessLogic.Service;
+package codebusters.smarttradebackend.BusinessLogic.Service.Search;
 
 import codebusters.smarttradebackend.BusinessLogic.IntService.ISearchService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
