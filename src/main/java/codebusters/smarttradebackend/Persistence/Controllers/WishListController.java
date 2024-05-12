@@ -17,8 +17,7 @@ public class WishListController {
     private WishListService service;
 
     @GetMapping("/wishList")
-    public List<Product> getWishList(@RequestBody Map<String, Integer> request) {
-        int user_id = request.get("user_id");
+    public List<Product> getWishList(@RequestParam("user_id") int user_id) {
         return service.getWishProductsById(user_id);
     }
 
