@@ -47,7 +47,7 @@ public class SearchController {
     }
 
     @GetMapping("/storable")
-    public List<Product> storableSearch(@RequestBody Map<String, Object request) {
+    public List<Product> storableSearch(@RequestBody Map<String, Object> request) {
         List<Product> SearchHistory = (List<Product>) request.get("SearchHistory");
         List<Product> Products = (List<Product>) request.get("Products");
         String searchText = (String) request.get("searchText");
