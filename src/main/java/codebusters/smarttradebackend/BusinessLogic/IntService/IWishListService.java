@@ -10,6 +10,5 @@ public interface IWishListService {
 
     public void addWishedProduct(int user_id, int product_id);
 
-
-    void delete(int user_id, int product_id);
+    void delete(int user_id, String product_name);
 }

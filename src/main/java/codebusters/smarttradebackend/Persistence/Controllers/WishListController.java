@@ -29,9 +29,9 @@ public class WishListController {
     }
 
     @DeleteMapping("/delete")
-    public void delete(@RequestBody Map<String, Integer> request) {
-        int user_id = request.get("user_id");
-        int product_id = request.get("product_id");
-        service.delete(user_id, product_id);
+    public void delete(@RequestBody Map<String, Object> request) {
+        int user_id = (int) request.get("user_id");
+        String product_name = (String) request.get("product_name");
+        service.delete(user_id, product_name);
     }
 }
