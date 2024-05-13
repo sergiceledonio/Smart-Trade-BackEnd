@@ -56,16 +56,19 @@ public class ShoppingCartController {
         int n = (int)request.get("n");
         String p_name = (String) request.get("p_name");
         int u_id = (int)request.get("u_id");
+        System.out.println("Se le añade: " + n + " a la cantidad que había");
         int p_id = productService.getProductByName(p_name).get().getId();
 
         shoppingService.changeAmount(n, p_id, u_id);
     }
 
-    @GetMapping("/amount")
+    @PostMapping("/amount")
     public int amount(@RequestBody Map<String, Object> request) {
         String p_name = (String) request.get("p_name");
         int u_id = (int)request.get("u_id");
         int p_id = productService.getProductByName(p_name).get().getId();
-        return shoppingService.amount(p_id, u_id);
+        int res = shoppingService.amount(p_id, u_id);
+        System.out.println("La llamada devuelve: " + res);
+        return res;
     }
 }

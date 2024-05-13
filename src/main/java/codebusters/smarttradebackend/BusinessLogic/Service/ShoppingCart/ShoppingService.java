@@ -71,6 +71,7 @@ public class ShoppingService implements IShoppingService {
         Optional<ShoppingCart> sp = scdata.findByUserId(u_id);
         CartProduct cartProduct = spdata.findByProduct(p_id, sp.get().getId());
         cartProduct.setCantidad(cartProduct.getCantidad() + n);
+        System.out.println("La cantidad es: " + cartProduct.getCantidad());
         spdata.save(cartProduct);
     }
 
