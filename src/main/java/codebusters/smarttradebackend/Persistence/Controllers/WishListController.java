@@ -28,4 +28,10 @@ public class WishListController {
         service.addWishedProduct(user_id, p_id);
     }
 
+    @PostMapping("/delete")
+    public void delete(@RequestBody Map<String, Object> request) {
+        int user_id = (int) request.get("user_id");
+        String product_name = (String) request.get("product_name");
+        service.delete(user_id, product_name);
+    }
 }

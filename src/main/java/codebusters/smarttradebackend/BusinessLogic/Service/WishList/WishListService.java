@@ -2,8 +2,6 @@ package codebusters.smarttradebackend.BusinessLogic.Service.WishList;
 
 import codebusters.smarttradebackend.BusinessLogic.IntService.IWishListService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
-import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.CartProduct;
-import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.ShoppingCart;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.BusinessLogic.Models.WishList.WishList;
 import codebusters.smarttradebackend.BusinessLogic.Models.WishList.WishProduct;
@@ -49,6 +47,13 @@ public class WishListService implements IWishListService {
             wldata.save(newwl);
             wpdata.save(wp);
         }
+    }
 
+    @Override
+    public void delete(int user_id, String product_name) {
+        Optional<WishList> wl = wldata.findByUserId(user_id);
+        int product_id = pdata.findProductByName(product_name).get().getId();
+        WishProduct deleted = wpdata.findByProduct(product_id, wl.get().getId());
+        wpdata.deleteById(deleted.getId());
     }
 }
