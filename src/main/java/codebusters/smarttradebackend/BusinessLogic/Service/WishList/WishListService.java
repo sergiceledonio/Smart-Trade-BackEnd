@@ -52,8 +52,13 @@ public class WishListService implements IWishListService {
     @Override
     public void delete(int user_id, String product_name) {
         Optional<WishList> wl = wldata.findByUserId(user_id);
-        int product_id = pdata.findProductByName(product_name).get().getId();
-        WishProduct deleted = wpdata.findByProduct(product_id, wl.get().getId());
-        wpdata.deleteById(deleted.getId());
+        Optional<Product> product = pdata.findProductByName(product_name);
+        if(product.isPresent()){
+            Product p = product.get();
+            WishProduct deleted = wpdata.findByProduct(p.getId(), wl.get().getId());
+            wpdata.deleteById(deleted.getId());
+        } else {
+            System.out.println("estamos jodidos");
+        }
     }
 }
