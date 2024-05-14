@@ -1,4 +1,4 @@
-package codebusters.smarttradebackend.Persistence.Repository;
+package codebusters.smarttradebackend.Persistence.Repository.ShoppingCart;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.CartProduct;
 import org.springframework.data.jpa.repository.JpaRepository;

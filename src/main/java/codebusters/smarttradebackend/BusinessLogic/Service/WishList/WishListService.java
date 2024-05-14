@@ -6,6 +6,8 @@ import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.BusinessLogic.Models.WishList.WishList;
 import codebusters.smarttradebackend.BusinessLogic.Models.WishList.WishProduct;
 import codebusters.smarttradebackend.Persistence.Repository.*;
+import codebusters.smarttradebackend.Persistence.Repository.WishList.WishListRepository;
+import codebusters.smarttradebackend.Persistence.Repository.WishList.WishProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

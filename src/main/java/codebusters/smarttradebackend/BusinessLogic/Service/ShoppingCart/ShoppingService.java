@@ -6,8 +6,8 @@ import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.CartProdu
 import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.ShoppingCart;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.Persistence.Repository.ProductRepository;
-import codebusters.smarttradebackend.Persistence.Repository.ShoppingCartRepository;
-import codebusters.smarttradebackend.Persistence.Repository.ShoppingProductRepository;
+import codebusters.smarttradebackend.Persistence.Repository.ShoppingCart.ShoppingCartRepository;
+import codebusters.smarttradebackend.Persistence.Repository.ShoppingCart.ShoppingProductRepository;
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
