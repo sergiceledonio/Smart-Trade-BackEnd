@@ -28,11 +28,11 @@ public class ShoppingCartController {
     }
 
     @PostMapping("/newCartProduct")
-    public void addCartProduct(@RequestBody Map<String, Integer> request) {
+    public int addCartProduct(@RequestBody Map<String, Integer> request) {
         int user_id = request.get("user_id");
         int p_id = request.get("p_id");
         int amount = request.get("amount");
-        shoppingService.addShoppingProduct(user_id, p_id, amount);
+        return shoppingService.addShoppingProduct(user_id, p_id, amount);
     }
 
     @PostMapping("/delete")
