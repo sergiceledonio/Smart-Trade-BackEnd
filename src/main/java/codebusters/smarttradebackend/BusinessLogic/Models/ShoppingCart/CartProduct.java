@@ -53,6 +53,9 @@ public class CartProduct {
         this.shoppingProduct = product;
     }
 
+    public int getProductId(){
+        return this.shoppingProduct.getId();
+    }
     public int getCantidad() {
         return cantidad;
     }

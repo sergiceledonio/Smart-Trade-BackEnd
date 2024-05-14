@@ -43,7 +43,7 @@ public class ShoppingService implements IShoppingService {
             Optional<Product> p = pdata.findById(p_id);
             List<CartProduct> cartProducts = scdata.getCartProductsById(sc.get().getId());
             for(int i = 0; i < cartProducts.size(); i++) {
-                if(cartProducts.get(i).getId() == p_id) {
+                if(cartProducts.get(i).getProductId() == p_id) {
                     return -1;
                 }
             }
