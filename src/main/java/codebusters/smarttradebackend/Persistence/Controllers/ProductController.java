@@ -70,11 +70,12 @@ public class ProductController {
         String type = request.getType();
         String name = request.getName();
         Double price = request.getPrice();
+        int user_id = request.getUser_id().getId();
         String description = request.getDescription();
         boolean pending = request.getPending();
         boolean validation = request.getValidation();
 
-        service.addProduct(name, price, type, description, pending, validation);
+        service.addProduct(name, price, type, description, pending, validation, user_id);
         return "Producto recibido: " + name;
     }
 

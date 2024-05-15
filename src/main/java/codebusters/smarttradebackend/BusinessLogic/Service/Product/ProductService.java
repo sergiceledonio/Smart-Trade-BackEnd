@@ -3,7 +3,9 @@ package codebusters.smarttradebackend.BusinessLogic.Service.Product;
 import codebusters.smarttradebackend.BusinessLogic.IntService.IProductService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.ProductFactory;
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.Persistence.Repository.ProductRepository;
+import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ public class ProductService implements IProductService {
 
     @Autowired
     private ProductRepository productData;
+
+    @Autowired
+    private UserRepository userData;
 
     //cambiar por attb booleanos
     @Override
@@ -69,9 +74,10 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation) {
+    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id) {
         ProductFactory fact = new ProductFactory();
-        Product np2 = fact.createProduct(new String[]{name, Double.toString(price), type, description});
+        Optional<User> user = userData.findById(user_id);
+        Product np2 = fact.createProduct(new String[]{name, Double.toString(price), type, description, user});
 
         try{
             np2.setPending(pending);

@@ -1,6 +1,7 @@
 package codebusters.smarttradebackend.BusinessLogic.IntService;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 
 
 import java.awt.*;
@@ -29,7 +30,7 @@ public interface IProductService {
 
     public List<Product> getToys();
 
-    Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation);
+    public Product addProduct(String name, Double price, String type, User user, String description, Boolean pending, Boolean validation);
 
     public void deleteProduct(Product p);
 

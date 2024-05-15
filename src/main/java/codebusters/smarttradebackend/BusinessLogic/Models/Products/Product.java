@@ -36,7 +36,7 @@ public class Product {
 
     }
 
-    public Product(String name, double price, String type, User user, String description, boolean pend, boolean val) {
+    public Product(String name, double price, String type, String description, boolean pend, boolean val, User user) {
         this.name = name;
         this.price = price;
         this.type = type;
