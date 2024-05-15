@@ -70,7 +70,7 @@ public class ProductController {
         String type = request.getType();
         String name = request.getName();
         Double price = request.getPrice();
-        int user_id = request.getUser_id().getId();
+        int user_id = request.getUser_id();
         String description = request.getDescription();
         boolean pending = request.getPending();
         boolean validation = request.getValidation();

@@ -19,9 +19,8 @@ public class Product {
     @Column(name = "type")
     private String type;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user_id;
+    @Column(name = "user_id")
+    private int user_id;
 
     @Column(name = "description", length = 200)
     private String description;
@@ -36,7 +35,7 @@ public class Product {
 
     }
 
-    public Product(String name, double price, String type, String description, boolean pend, boolean val, User user) {
+    public Product(String name, double price, String type, String description, boolean pend, boolean val, int user) {
         this.name = name;
         this.price = price;
         this.type = type;
@@ -74,11 +73,11 @@ public class Product {
         this.type = type;
     }
 
-    public User getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(User user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 

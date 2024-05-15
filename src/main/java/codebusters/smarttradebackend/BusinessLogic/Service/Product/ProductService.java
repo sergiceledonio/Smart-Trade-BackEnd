@@ -76,8 +76,7 @@ public class ProductService implements IProductService {
     @Override
     public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id) {
         ProductFactory fact = new ProductFactory();
-        Optional<User> user = userData.findById(user_id);
-        Product np2 = fact.createProduct(new String[]{name, Double.toString(price), type, description, user});
+        Product np2 = fact.createProduct(new String[]{name, Double.toString(price), type, description, user_id});
 
         try{
             np2.setPending(pending);
