@@ -7,7 +7,6 @@ import codebusters.smarttradebackend.Persistence.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -100,6 +99,12 @@ public class ProductService implements IProductService {
             }
         }
         return pendingProducts;
+    }
+
+    @Override
+    public List<Product> getValidatedProductsByUser(int user_id) {
+        List<Product> p_list = productData.findProductsByUser(user_id);
+        return getValidatedProducts(p_list);
     }
 
     @Override

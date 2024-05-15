@@ -1,5 +1,6 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Products;
 
+import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,6 +19,10 @@ public class Product {
     @Column(name = "type")
     private String type;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user_id;
+
     @Column(name = "description", length = 200)
     private String description;
 
@@ -31,10 +36,11 @@ public class Product {
 
     }
 
-    public Product(String name, double price, String type, String description, boolean pend, boolean val) {
+    public Product(String name, double price, String type, User user, String description, boolean pend, boolean val) {
         this.name = name;
         this.price = price;
         this.type = type;
+        this.user_id = user;
         this.description = description;
         this.pending = pend;
         this.validation = val;
@@ -66,6 +72,14 @@ public class Product {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public User getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
     }
 
     public String getDescription() {

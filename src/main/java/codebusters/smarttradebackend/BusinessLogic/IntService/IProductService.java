@@ -35,6 +35,8 @@ public interface IProductService {
 
     public List<Product> getPendingProducts(List<Product> products);
 
+    List<Product> getValidatedProductsByUser(int user_id);
+
     public List<Product> getValidatedProducts(List<Product> products);
 
     public void validateProduct(Product product, boolean isValid);

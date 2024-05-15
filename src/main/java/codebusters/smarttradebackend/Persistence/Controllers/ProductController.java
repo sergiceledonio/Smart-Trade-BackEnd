@@ -83,6 +83,12 @@ public class ProductController {
         service.deleteProduct(p);
     }
 
+    @GetMapping("/validatedByUser")
+    public List<Product> getValidatedByUser(@RequestBody Map<String, Integer> request) {
+        int user_id = request.get("user_id");
+        return service.getValidatedProductsByUser(user_id);
+    }
+
     @GetMapping("/pending")
     public List<Product> getPendingProducts() {
         return service.getPendingProducts(this.getProducts());
