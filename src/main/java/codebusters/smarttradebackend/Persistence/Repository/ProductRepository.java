@@ -13,7 +13,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p WHERE LOWER(p.name) LIKE %:nombre%")
     public Optional<Product> findProductByName(@Param("nombre") String nombre);
 
-    @Query("SELECT p FROM Product p WHERE p.user_id.id = :u_id")
+    @Query("SELECT p FROM Product p WHERE p.user_id.id = :user_id")
     public List<Product> findProductsByUser(int user_id);
 
     @Query("SELECT p FROM Product p WHERE p.type = 'book'")
