@@ -5,6 +5,8 @@ import codebusters.smarttradebackend.BusinessLogic.Service.Product.ProductServic
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -28,7 +30,14 @@ public class ProductController {
 
     @GetMapping("/getbyname/{name}")
     public Optional<Product> getProductByName(@PathVariable String name) {
-        return service.getProductByName(name);
+        String decodedName = "";
+        try{
+            decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8.toString());
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+            return service.getProductByName(decodedName);
     }
 
     @GetMapping("/books")
