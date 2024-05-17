@@ -1,6 +1,7 @@
 package codebusters.smarttradebackend.Persistence.Repository.GiftList;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.GiftList.GiftList;
+import codebusters.smarttradebackend.BusinessLogic.Models.GiftList.GiftProduct;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.CartProduct;
 import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.ShoppingCart;
@@ -18,8 +19,8 @@ public interface GiftListRepository extends JpaRepository<GiftList, Integer> {
     Optional<GiftList> findByUserId(int user_id);
 
     @Query("SELECT gp FROM GiftProduct gp, GiftList gl WHERE gp.giftList.id = :gl_id")
-    List<CartProduct> getGiftProductsById(int gl_id);
+    List<GiftProduct> getGiftProductsById(int gl_id);
 
-    @Query("SELECT f.friend FROM GiftProduct f WHERE f.giftList.user = :user")
+    @Query("SELECT f.friend FROM GiftProduct f WHERE f.giftList.user = :user_id")
     List<String> getFriendsByUserId(int user_id);
 }
