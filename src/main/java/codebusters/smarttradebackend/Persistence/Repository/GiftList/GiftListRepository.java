@@ -19,4 +19,7 @@ public interface GiftListRepository extends JpaRepository<GiftList, Integer> {
 
     @Query("SELECT gp FROM GiftProduct gp, GiftList gl WHERE gp.giftList.id = :gl_id")
     List<CartProduct> getGiftProductsById(int gl_id);
+
+    @Query("SELECT f.friend FROM GiftProduct f WHERE f.giftList.user = :user")
+    List<String> getFriendsByUserId(int user_id);
 }

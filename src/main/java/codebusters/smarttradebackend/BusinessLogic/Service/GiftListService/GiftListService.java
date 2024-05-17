@@ -36,6 +36,11 @@ public class GiftListService implements IGiftListService {
     }
 
     @Override
+    public List<String> getFriendsByUserId(int user_id) {
+        return gldata.getFriendsByUserId(user_id);
+    }
+
+    @Override
     public void addGiftProduct(int user_id, int product_id, String friend) {
         Optional<GiftList> gl = gldata.findByUserId(user_id);
         Optional<User> u = udata.findById(user_id);
