@@ -17,8 +17,10 @@ public class GiftListController {
     private GiftListService service;
 
     @GetMapping("/giftList")
-    public List<Product> getGiftList(@RequestParam("user_id") int user_id) {
-        return service.getGiftProductsById(user_id);
+    public List<Product> getGiftList(@RequestBody Map<String, Object> request) {
+        int user_id = (int) request.get("user_id");
+        String friend = (String) request.get("friend");
+        return service.getGiftProductsById(user_id, friend);
     }
 
     @PostMapping("/newGiftProduct")

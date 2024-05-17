@@ -31,8 +31,8 @@ public class GiftListService implements IGiftListService {
     private UserRepository udata;
 
     @Override
-    public List<Product> getGiftProductsById(int user_id) {
-        return gldata.findGiftProductsByUserId(user_id);
+    public List<Product> getGiftProductsById(int user_id, String friend) {
+        return gldata.findGiftProductsByUserId(user_id, friend);
     }
 
     @Override

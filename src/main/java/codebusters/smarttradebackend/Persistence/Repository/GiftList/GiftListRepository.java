@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface GiftListRepository extends JpaRepository<GiftList, Integer> {
-    @Query("SELECT gp.giftProduct FROM GiftProduct gp JOIN gp.giftList s WHERE s.user.id = :userid")
-    List<Product> findGiftProductsByUserId(int userid);
+    @Query("SELECT gp.giftProduct FROM GiftProduct gp JOIN gp.giftList s WHERE s.user.id = :userid AND gp.friend = :friend")
+    List<Product> findGiftProductsByUserId(int userid, String friend);
 
     @Query("SELECT g FROM GiftList g, User u WHERE g.user.id = :user_id")
     Optional<GiftList> findByUserId(int user_id);
