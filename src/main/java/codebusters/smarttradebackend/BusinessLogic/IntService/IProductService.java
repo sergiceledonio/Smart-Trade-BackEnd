@@ -2,6 +2,7 @@ package codebusters.smarttradebackend.BusinessLogic.IntService;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.awt.*;
@@ -30,7 +31,7 @@ public interface IProductService {
 
     public List<Product> getToys();
 
-    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id);
+    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id, byte[] image);
 
     public void deleteProduct(Product p);
 
@@ -43,4 +44,8 @@ public interface IProductService {
     public void validateProduct(Product product, boolean isValid);
 
     public String[] getAtrib(Product p);
+
+    void addImage(String name, MultipartFile image);
+
+    byte[] getImage(String name);
 }

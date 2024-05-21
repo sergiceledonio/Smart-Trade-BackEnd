@@ -4,6 +4,7 @@ import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Service.Product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -124,5 +125,16 @@ public class ProductController {
     @GetMapping("/atributos")
     public String[] getAtribs(@RequestBody Product product) {
         return service.getAtrib(product);
+    }
+
+    @PostMapping("/newImage")
+    public void addImage(@RequestParam("file") MultipartFile image, String name) {
+        service.addImage(name, image);
+    }
+
+    @GetMapping("/image")
+    public byte[] getImage(@RequestBody Map<String, String> request) {
+        String name = request.get("name");
+        return service.getImage(name);
     }
 }

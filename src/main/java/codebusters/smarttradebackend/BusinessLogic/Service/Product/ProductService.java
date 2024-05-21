@@ -3,12 +3,13 @@ package codebusters.smarttradebackend.BusinessLogic.Service.Product;
 import codebusters.smarttradebackend.BusinessLogic.IntService.IProductService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.ProductFactory;
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.Persistence.Repository.ProductRepository;
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -74,9 +75,9 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id) {
+    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id, byte[] image) {
         ProductFactory fact = new ProductFactory();
-        Product np2 = fact.createProduct(new String[]{name, Double.toString(price), type, description}, user_id);
+        Product np2 = fact.createProduct(new String[]{name, Double.toString(price), type, description}, user_id, image);
 
         try{
             np2.setPending(pending);
@@ -144,5 +145,26 @@ public class ProductService implements IProductService {
         data[4] = String.valueOf(p.getPending());
         data[5] = String.valueOf(p.getValidation());
         return data;
+    }
+
+    @Override
+    public void addImage(String name, MultipartFile image) {
+        try {
+            Optional<Product> product = productData.findProductByName(name);
+            if(product.isPresent()) {
+                Product p = product.get();
+                p.setImage(image.getBytes());
+                productData.save(p);
+            } else {
+                System.out.println("producto no encontrado");
+            }
+        } catch (IOException e) {
+            System.out.println("no se ha podido añadir la imagen");
+        }
+    }
+
+    @Override
+    public byte[] getImage(String name) {
+        return productData.getImageByName(name);
     }
 }
