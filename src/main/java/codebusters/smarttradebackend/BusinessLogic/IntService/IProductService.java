@@ -31,7 +31,7 @@ public interface IProductService {
 
     public List<Product> getToys();
 
-    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id);
+    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id, byte[] image);
 
     public void deleteProduct(Product p);
 
