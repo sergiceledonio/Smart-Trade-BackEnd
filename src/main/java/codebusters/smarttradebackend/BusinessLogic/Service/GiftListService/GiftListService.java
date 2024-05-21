@@ -45,9 +45,12 @@ public class GiftListService implements IGiftListService {
         Optional<GiftList> gl = gldata.findByUserId(user_id);
         Optional<User> u = udata.findById(user_id);
         if(gl.isPresent()) {
-            Optional<Product> p = pdata.findById(product_id);
-            GiftProduct gp = new GiftProduct(gl.get(), p.get(), friend);
-            gpdata.save(gp);
+            List<String> friends = gldata.getFriendsByUserId(user_id);
+            if (friends.contains(friend)) {
+                Optional<Product> p = pdata.findById(product_id);
+                GiftProduct gp = new GiftProduct(gl.get(), p.get(), friend);
+                gpdata.save(gp);
+            }
         } else {
             GiftList newgl = new GiftList(u.get());
             Optional<Product> p = pdata.findById(product_id);
