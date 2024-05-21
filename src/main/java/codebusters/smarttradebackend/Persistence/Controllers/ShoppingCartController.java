@@ -1,10 +1,14 @@
 package codebusters.smarttradebackend.Persistence.Controllers;
 
+import codebusters.smarttradebackend.BusinessLogic.IntService.Command.ShoppingCartCommand;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Service.Product.ProductService;
+import codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart.AddToCartCommand;
 import codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart.ShoppingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart.CommandExecutor;
+
 
 import java.util.List;
 import java.util.Map;
@@ -21,6 +25,8 @@ public class ShoppingCartController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CommandExecutor commandExecutor;
 
     @GetMapping("/cartProducts")
     public List<Product> getShoppingProducts(@RequestParam("user_id") int userId) {
@@ -29,10 +35,19 @@ public class ShoppingCartController {
 
     @PostMapping("/newCartProduct")
     public int addCartProduct(@RequestBody Map<String, Integer> request) {
-        int user_id = request.get("user_id");
-        int p_id = request.get("p_id");
+        int userId = request.get("user_id");
+        int productId = request.get("p_id");
         int amount = request.get("amount");
-        return shoppingService.addShoppingProduct(user_id, p_id, amount);
+
+        Optional<Product> productOptional = productService.getProductById(productId);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            ShoppingCartCommand addToCartCommand = new AddToCartCommand(userId, product, amount, shoppingService);
+            commandExecutor.executeCommand(addToCartCommand);
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
     @PostMapping("/delete")
@@ -47,7 +62,7 @@ public class ShoppingCartController {
             System.out.println("El producto es borrado");
             shoppingService.delete(p_id, u_id);
         } else {
-            // Manejar el caso en el que no se encuentre ningún producto con ese nombre
+
         }
     }
 

@@ -16,16 +16,16 @@ public class GiftListController {
     @Autowired
     private GiftListService service;
 
-    @GetMapping("/giftList")
+    @PostMapping("/giftList")
     public List<Product> getGiftList(@RequestBody Map<String, Object> request) {
         int user_id = (int) request.get("user_id");
         String friend = (String) request.get("friend");
         return service.getGiftProductsById(user_id, friend);
     }
 
-    @GetMapping("/friends")
-    public List<String> getFriendsByUserId(@RequestBody Map<String, Integer> request) {
-        int user_id = request.get("user_id");
+    @PostMapping("/friends")
+    public List<String> getFriendsByUserId(@RequestBody Map<String, Object> request) {
+        int user_id = (int) request.get("user_id");
         return service.getFriendsByUserId(user_id);
     }
 
