@@ -1,6 +1,6 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Products;
 public class ProductFactory {
-    public codebusters.smarttradebackend.BusinessLogic.Models.Products.Product createProduct(String[] parameters, Boolean pend, Boolean val, Integer user)
+    public codebusters.smarttradebackend.BusinessLogic.Models.Products.Product createProduct(String[] parameters, Boolean pend, Boolean val, Integer user, byte[] image)
     {
         if (parameters.length < 4) {
             throw new IllegalArgumentException("Insufficient parameters to create Product.");
@@ -13,10 +13,11 @@ public class ProductFactory {
         a.setPending(pend);
         a.setValidation(val);
         a.setUser_id(user);
+        a.setImage(image);
         System.out.println(a.getName());
         return a;
     }
-    public codebusters.smarttradebackend.BusinessLogic.Models.Products.Product createProduct(String[] parameters, Integer user)
+    public codebusters.smarttradebackend.BusinessLogic.Models.Products.Product createProduct(String[] parameters, Integer user, byte[] image)
     {
         if (parameters.length < 4) {
             throw new IllegalArgumentException("Insufficient parameters to create Product.");
@@ -29,6 +30,7 @@ public class ProductFactory {
         a.setPending(true);
         a.setValidation(false);
         a.setUser_id(user);
+        a.setImage(image);
         System.out.println(a.getName());
         return a;
     }
