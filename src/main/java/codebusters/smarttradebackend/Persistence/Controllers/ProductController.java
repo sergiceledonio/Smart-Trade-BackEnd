@@ -82,10 +82,11 @@ public class ProductController {
         Double price = request.getPrice();
         int user_id = request.getUser_id();
         String description = request.getDescription();
+        byte[] image = request.getImage();
         boolean pending = request.getPending();
         boolean validation = request.getValidation();
 
-        service.addProduct(name, price, type, description, pending, validation, user_id);
+        service.addProduct(name, price, type, description, pending, validation, user_id, image);
         return "Producto recibido: " + name;
     }
 
