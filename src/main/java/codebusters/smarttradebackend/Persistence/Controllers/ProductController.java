@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -75,17 +76,22 @@ public class ProductController {
     public List<Product> getToys() { return (List<Product>) service.getToys(); }
 
     @PostMapping("/newproducts")
-    public String addProduct(@RequestBody Product request) {
+    public String addProduct(@RequestBody Map<String, Object> request) {
         System.out.println("El producto está siendo guardado");
-        String type = request.getType();
-        String name = request.getName();
-        Double price = request.getPrice();
-        int user_id = request.getUser_id();
-        String description = request.getDescription();
-        boolean pending = request.getPending();
-        boolean validation = request.getValidation();
+        String type = (String) request.get("type");
+        String name = (String) request.get("name");
+        String priceS = (String) request.get("price");
+        double price = Double.parseDouble(priceS);
+        int user_id = (int)request.get("user_id");
+        String description = (String) request.get("desc");
+        boolean pending = (boolean)request.get("pending");
+        boolean validation = (boolean)request.get("validation");
+        String imgS = (String)request.get("image");
+        byte[] img = Base64.getDecoder().decode(imgS);
+        System.out.println(img);
 
-        service.addProduct(name, price, type, description, pending, validation, user_id);
+
+        service.addProduct(name, price, type, description, pending, validation, user_id, img);
         return "Producto recibido: " + name;
     }
 
