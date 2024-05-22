@@ -9,7 +9,7 @@ public interface IGiftListService {
 
     List<String> getFriendsByUserId(int user_id);
 
-    void addGiftProduct(int user_id, int product_id, String friend);
+    int addGiftProduct(int user_id, int product_id, String friend);
 
     void delete(int user_id, String product_name);
 }

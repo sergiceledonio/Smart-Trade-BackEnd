@@ -41,19 +41,33 @@ public class GiftListService implements IGiftListService {
     }
 
     @Override
-    public void addGiftProduct(int user_id, int product_id, String friend) {
+    public int addGiftProduct(int user_id, int product_id, String friend) {
         Optional<GiftList> gl = gldata.findByUserId(user_id);
         Optional<User> u = udata.findById(user_id);
         if(gl.isPresent()) {
+<<<<<<< HEAD
             Optional<Product> p = pdata.findById(product_id);
             GiftProduct gp = new GiftProduct(gl.get(), p.get(), friend);
             gpdata.save(gp);
+=======
+            List<String> friends = gldata.getFriendsByUserId(user_id);
+            if (friends.contains(friend)) {
+                Optional<Product> p = pdata.findById(product_id);
+                GiftProduct gp = new GiftProduct(gl.get(), p.get(), friend);
+                gpdata.save(gp);
+                return 1;
+            } else {
+                System.out.println("la cesta existe pero el usuario no tiene este amigo");
+                return 0;
+            }
+>>>>>>> 7494856 (more order)
         } else {
             GiftList newgl = new GiftList(u.get());
             Optional<Product> p = pdata.findById(product_id);
             GiftProduct gp = new GiftProduct(newgl, p.get(), friend);
             gldata.save(newgl);
             gpdata.save(gp);
+            return -1;
         }
     }
 
