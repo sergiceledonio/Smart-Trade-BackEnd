@@ -22,7 +22,7 @@ public class OrderService implements IOrderService {
     private UserRepository udata;
 
     @Autowired
-    private ShoppingCartRepository scdata
+    private ShoppingCartRepository scdata;
 
     @Override
     public void addOrder(int sc_id) {
