@@ -6,8 +6,8 @@ import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.CartProdu
 import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.ShoppingCart;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.Persistence.Repository.ProductRepository;
-import codebusters.smarttradebackend.Persistence.Repository.ShoppingCartRepository;
-import codebusters.smarttradebackend.Persistence.Repository.ShoppingProductRepository;
+import codebusters.smarttradebackend.Persistence.Repository.ShoppingCart.ShoppingCartRepository;
+import codebusters.smarttradebackend.Persistence.Repository.ShoppingCart.ShoppingProductRepository;
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +43,7 @@ public class ShoppingService implements IShoppingService {
             Optional<Product> p = pdata.findById(p_id);
             List<CartProduct> cartProducts = scdata.getCartProductsById(sc.get().getId());
             for(int i = 0; i < cartProducts.size(); i++) {
-                if(cartProducts.get(i).getId() == p_id) {
+                if(cartProducts.get(i).getProductId() == p_id) {
                     return -1;
                 }
             }
@@ -71,6 +71,7 @@ public class ShoppingService implements IShoppingService {
         Optional<ShoppingCart> sp = scdata.findByUserId(u_id);
         CartProduct cartProduct = spdata.findByProduct(p_id, sp.get().getId());
         cartProduct.setCantidad(cartProduct.getCantidad() + n);
+        System.out.println("La cantidad es: " + cartProduct.getCantidad());
         spdata.save(cartProduct);
     }
 

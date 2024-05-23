@@ -1,4 +1,4 @@
-package codebusters.smarttradebackend.Persistence.Repository;
+package codebusters.smarttradebackend.Persistence.Repository.ShoppingCart;
 
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.CartProduct;

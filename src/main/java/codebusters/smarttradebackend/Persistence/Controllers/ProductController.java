@@ -4,7 +4,11 @@ import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Service.Product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -28,7 +32,14 @@ public class ProductController {
 
     @GetMapping("/getbyname/{name}")
     public Optional<Product> getProductByName(@PathVariable String name) {
-        return service.getProductByName(name);
+        String decodedName = "";
+        try{
+            decodedName = URLDecoder.decode(name, StandardCharsets.UTF_8.toString());
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+            return service.getProductByName(decodedName);
     }
 
     @GetMapping("/books")
@@ -65,22 +76,34 @@ public class ProductController {
     public List<Product> getToys() { return (List<Product>) service.getToys(); }
 
     @PostMapping("/newproducts")
-    public String addProduct(@RequestBody Product request) {
+    public String addProduct(@RequestBody Map<String, Object> request) {
         System.out.println("El producto está siendo guardado");
-        String type = request.getType();
-        String name = request.getName();
-        Double price = request.getPrice();
-        String description = request.getDescription();
-        boolean pending = request.getPending();
-        boolean validation = request.getValidation();
+        String type = (String) request.get("type");
+        String name = (String) request.get("name");
+        String priceS = (String) request.get("price");
+        double price = Double.parseDouble(priceS);
+        int user_id = (int)request.get("user_id");
+        String description = (String) request.get("desc");
+        boolean pending = (boolean)request.get("pending");
+        boolean validation = (boolean)request.get("validation");
+        String imgS = (String)request.get("image");
+        byte[] img = Base64.getDecoder().decode(imgS);
+        System.out.println(img);
 
-        service.addProduct(name, price, type, description, pending, validation);
+
+        service.addProduct(name, price, type, description, pending, validation, user_id, img);
         return "Producto recibido: " + name;
     }
 
     @DeleteMapping("/delete")
     public void deleteByName(@RequestBody Product p) {
         service.deleteProduct(p);
+    }
+
+    @GetMapping("/validatedByUser")
+    public List<Product> getValidatedByUser(@RequestBody Map<String, Integer> request) {
+        int user_id = request.get("user_id");
+        return service.getValidatedProductsByUser(user_id);
     }
 
     @GetMapping("/pending")
@@ -108,5 +131,16 @@ public class ProductController {
     @GetMapping("/atributos")
     public String[] getAtribs(@RequestBody Product product) {
         return service.getAtrib(product);
+    }
+
+    @PostMapping("/newImage")
+    public void addImage(@RequestParam("file") MultipartFile image, String name) {
+        service.addImage(name, image);
+    }
+
+    @GetMapping("/image")
+    public byte[] getImage(@RequestBody Map<String, String> request) {
+        String name = request.get("name");
+        return service.getImage(name);
     }
 }

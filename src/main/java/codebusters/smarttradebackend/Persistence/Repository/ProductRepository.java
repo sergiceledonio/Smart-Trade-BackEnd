@@ -13,6 +13,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p WHERE LOWER(p.name) LIKE %:nombre%")
     public Optional<Product> findProductByName(@Param("nombre") String nombre);
 
+    @Query("SELECT p FROM Product p WHERE p.user_id = :user_id")
+    public List<Product> findProductsByUser(int user_id);
+
     @Query("SELECT p FROM Product p WHERE p.type = 'book'")
     public List<Product> findAllBooks();
 
@@ -40,4 +43,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p WHERE p.validation = true")
     public List<Product> findValProducts();
 
+    @Query("SELECT p.image FROM Product p WHERE LOWER(p.name) LIKE %:nombre%")
+    public byte[] getImageByName(@Param("nombre") String nombre);
 }
