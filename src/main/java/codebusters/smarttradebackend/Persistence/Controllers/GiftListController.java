@@ -30,11 +30,11 @@ public class GiftListController {
     }
 
     @PostMapping("/newGiftProduct")
-    public void addGiftProduct(@RequestBody Map<String, Object> request) {
+    public int addGiftProduct(@RequestBody Map<String, Object> request) {
         int user_id = (int) request.get("user_id");
         int p_id = (int) request.get("p_id");
         String friend = (String) request.get("friend");
-        service.addGiftProduct(user_id, p_id, friend);
+        return service.addGiftProduct(user_id, p_id, friend);
     }
 
     @PostMapping("/delete")

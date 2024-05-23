@@ -3,7 +3,6 @@ package codebusters.smarttradebackend.BusinessLogic.Service.OrderService;
 
 import codebusters.smarttradebackend.BusinessLogic.IntService.IOrderService;
 import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.ShoppingCart;
-import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.Persistence.Repository.OrderRepository.OrderRepository;
 import codebusters.smarttradebackend.Persistence.Repository.ShoppingCart.ShoppingCartRepository;
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
