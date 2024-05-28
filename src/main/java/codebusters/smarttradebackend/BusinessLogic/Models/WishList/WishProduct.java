@@ -26,7 +26,8 @@ public class WishProduct {
         this.productWished = productWished;
     }
 
-    public WishProduct(){}
+    public WishProduct() {
+    }
 
     public int getId() {
         return id;

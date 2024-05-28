@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommandExecutor {
 
-    public void executeCommand(ShoppingCartCommand command) {
-        command.execute();
+    public int executeCommand(ShoppingCartCommand command) {
+        return command.execute();
     }
 }

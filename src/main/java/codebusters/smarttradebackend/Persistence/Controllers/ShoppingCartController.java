@@ -43,8 +43,7 @@ public class ShoppingCartController {
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
             ShoppingCartCommand addToCartCommand = new AddToCartCommand(userId, product, amount, shoppingService);
-            commandExecutor.executeCommand(addToCartCommand);
-            return 1;
+            return commandExecutor.executeCommand(addToCartCommand);
         } else {
             return -1;
         }

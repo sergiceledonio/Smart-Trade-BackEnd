@@ -39,6 +39,7 @@ public class ShoppingService implements IShoppingService {
     public int addShoppingProduct(int user_id, int p_id, int amount) {
         Optional<ShoppingCart> sc = scdata.findByUserId(user_id);
         Optional<User> u = udata.findById(user_id);
+
         if(sc.isPresent()) {
             Optional<Product> p = pdata.findById(p_id);
             List<CartProduct> cartProducts = scdata.getCartProductsById(sc.get().getId());

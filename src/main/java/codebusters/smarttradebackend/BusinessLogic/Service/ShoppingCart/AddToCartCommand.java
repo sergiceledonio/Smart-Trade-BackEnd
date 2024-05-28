@@ -17,7 +17,7 @@ public class AddToCartCommand implements ShoppingCartCommand {
     }
 
     @Override
-    public void execute() {
-        shoppingService.addShoppingProduct(userId, product.getId(), quantity);
+    public int execute() {
+        return shoppingService.addShoppingProduct(userId, product.getId(), quantity);
     }
 }

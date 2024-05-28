@@ -42,9 +42,10 @@ public class UserController {
     public User registerClient(@RequestBody User client) {
         return this.service.clientRegister(client.getEmail(), client.getName(), client.getPassword(), client.getDni(), client.getCity(), client.getStreet(), client.getNumber(), client.getFlat(), client.getDoor());
     }
+
     @PostMapping("/newseller")
     public User registerSeller(@RequestBody User seller) {
-       return this.service.sellerRegister(seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban(), seller.getCity(), seller.getStreet(), seller.getNumber(), seller.getFlat(), seller.getDoor());
+        return this.service.sellerRegister(seller.getEmail(), seller.getName(), seller.getPassword(), seller.getCif(), seller.getIban(), seller.getCity(), seller.getStreet(), seller.getNumber(), seller.getFlat(), seller.getDoor());
     }
 
     @PostMapping("/newadmin")
@@ -75,7 +76,7 @@ public class UserController {
             response.put("flat", usuario.getFlat());
             response.put("id", usuario.getId());
             return ResponseEntity.ok(response);
-        } else if((int) user[0] == 2) {
+        } else if ((int) user[0] == 2) {
             Map<String, Object> response = new HashMap<>();
             response.put("email", usuario.getEmail());
             response.put("name", usuario.getName());
@@ -85,7 +86,7 @@ public class UserController {
             response.put("type", 2);
             response.put("id", usuario.getId());
             return ResponseEntity.ok(response);
-        } else if ((int) user[0] == 3){
+        } else if ((int) user[0] == 3) {
             Map<String, Object> response = new HashMap<>();
             response.put("email", usuario.getEmail());
             response.put("name", usuario.getName());
@@ -98,4 +99,9 @@ public class UserController {
         }
     }
 
+    @GetMapping("/email")
+    public String getEmail(@RequestParam("user_id") int userId) {
+        User user = service.getUserById(userId).get();
+        return user.getEmail();
+    }
 }

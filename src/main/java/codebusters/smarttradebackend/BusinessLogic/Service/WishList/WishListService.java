@@ -2,6 +2,8 @@ package codebusters.smarttradebackend.BusinessLogic.Service.WishList;
 
 import codebusters.smarttradebackend.BusinessLogic.IntService.IWishListService;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
+import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.CartProduct;
+import codebusters.smarttradebackend.BusinessLogic.Models.ShoppingCart.ShoppingCart;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import codebusters.smarttradebackend.BusinessLogic.Models.WishList.WishList;
 import codebusters.smarttradebackend.BusinessLogic.Models.WishList.WishProduct;
@@ -35,20 +37,32 @@ public class WishListService implements IWishListService {
     }
 
     @Override
-    public void addWishedProduct(int user_id, int product_id) {
+    public int addWishedProduct(int user_id, int product_id) {
         Optional<WishList> wl = wldata.findByUserId(user_id);
         Optional<User> u = udata.findById(user_id);
+
         if(wl.isPresent()) {
             Optional<Product> p = pdata.findById(product_id);
+            List<WishProduct> wishProducts = wldata.getWishedProductsById(wl.get().getId());
+            for(int i = 0; i < wishProducts.size(); i++) {
+                System.out.println(wishProducts.get(i).getProductWished().getId() == product_id);
+                if(wishProducts.get(i).getProductWished().getId() == product_id) {
+
+                    System.out.println("-1");
+                    return -1;
+                }
+            }
             WishProduct wp = new WishProduct(wl.get(), p.get());
             wpdata.save(wp);
         } else {
-            WishList newwl = new WishList(u.get());
+            WishList newsc = new WishList(u.get());
             Optional<Product> p = pdata.findById(product_id);
-            WishProduct wp = new WishProduct(newwl, p.get());
-            wldata.save(newwl);
-            wpdata.save(wp);
+            WishProduct cp = new WishProduct(newsc, p.get());
+            wldata.save(newsc);
+            wpdata.save(cp);
         }
+        System.out.println("1");
+        return 1;
     }
 
     @Override

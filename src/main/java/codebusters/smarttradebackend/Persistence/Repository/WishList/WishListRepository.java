@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface WishListRepository extends JpaRepository<WishList, Integer> {
+
     @Query("SELECT wp.productWished FROM WishProduct wp JOIN wp.wishList wl WHERE wl.user.id = :userid")
     List<Product> findProductsByUserId(int userid);
 
@@ -20,4 +21,5 @@ public interface WishListRepository extends JpaRepository<WishList, Integer> {
 
     @Query("SELECT wp FROM WishProduct wp, WishList wl WHERE wp.wishList.id = :wl_id")
     List<WishProduct> getWishedProductsById(int wl_id);
+
 }
