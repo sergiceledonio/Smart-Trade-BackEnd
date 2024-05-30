@@ -35,7 +35,8 @@ public class PaypalController {
     }
 
     @GetMapping("/addPaypal")
-    public Paypal addPaypal(String number, String email, String password, User user) {
+    public Paypal addPaypal(String email, String password, int id) {
+        User user = userController.getUserById(id).get();
         return (Paypal) service.addPaypal(email, password, user);
     }
 

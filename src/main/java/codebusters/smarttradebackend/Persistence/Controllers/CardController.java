@@ -36,7 +36,8 @@ public class CardController {
     }
 
     @GetMapping("/addcard")
-    public Card addCard(String number, String name, String cvv, Date expireDate, User user) {
+    public Card addCard(String number, String name, String cvv, String expireDate, int id) {
+        User user = userController.getUserById(id).get();
         return (Card) service.addCard(number, name, cvv, expireDate, user);
     }
 

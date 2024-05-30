@@ -13,7 +13,7 @@ public interface ICardService {
     public Optional<Card> getCardsById(int id);
     public List<Card> getCardByUser(User user);
     public List<Card> getCards();
-    public Card addCard(String number, String name, String cvv, Date expireDate, User user);
+    public Card addCard(String number, String name, String cvv, String expireDate, User user);
     public void deleteCard(Card card);
 
 }
