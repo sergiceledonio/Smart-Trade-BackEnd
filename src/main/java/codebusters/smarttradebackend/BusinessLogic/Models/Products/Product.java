@@ -3,6 +3,8 @@ package codebusters.smarttradebackend.BusinessLogic.Models.Products;
 import codebusters.smarttradebackend.BusinessLogic.Models.Users.User;
 import jakarta.persistence.*;
 
+import java.sql.Blob;
+
 @Entity
 public class Product {
 
@@ -21,7 +23,7 @@ public class Product {
 
     @Lob
     @Column(name = "image")
-    private byte[] image;
+    private Blob image;
 
     @Column(name = "user_id")
     private int user_id;
@@ -39,7 +41,7 @@ public class Product {
 
     }
 
-    public Product(String name, double price, String type, String description, boolean pend, boolean val, int user, byte[] image) {
+    public Product(String name, double price, String type, String description, boolean pend, boolean val, int user, Blob image) {
         this.name = name;
         this.price = price;
         this.type = type;
@@ -78,11 +80,11 @@ public class Product {
         this.type = type;
     }
 
-    public byte[] getImage() {
+    public Blob getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(Blob image) {
         this.image = image;
     }
 

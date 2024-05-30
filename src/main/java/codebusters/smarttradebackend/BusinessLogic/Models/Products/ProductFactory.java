@@ -1,6 +1,9 @@
 package codebusters.smarttradebackend.BusinessLogic.Models.Products;
+
+import java.sql.Blob;
+
 public class ProductFactory {
-    public codebusters.smarttradebackend.BusinessLogic.Models.Products.Product createProduct(String[] parameters, Boolean pend, Boolean val, int user, byte[] image)
+    public codebusters.smarttradebackend.BusinessLogic.Models.Products.Product createProduct(String[] parameters, Boolean pend, Boolean val, int user, Blob image)
     {
         if (parameters.length < 4) {
             throw new IllegalArgumentException("Insufficient parameters to create Product.");
@@ -17,7 +20,7 @@ public class ProductFactory {
         System.out.println(a.getName());
         return a;
     }
-    public codebusters.smarttradebackend.BusinessLogic.Models.Products.Product createProduct(String[] parameters, int user, byte[] image)
+    public codebusters.smarttradebackend.BusinessLogic.Models.Products.Product createProduct(String[] parameters, int user, Blob image)
     {
         if (parameters.length < 4) {
             throw new IllegalArgumentException("Insufficient parameters to create Product.");

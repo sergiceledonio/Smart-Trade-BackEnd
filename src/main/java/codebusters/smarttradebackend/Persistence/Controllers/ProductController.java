@@ -3,11 +3,16 @@ package codebusters.smarttradebackend.Persistence.Controllers;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Service.Product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
@@ -77,6 +82,7 @@ public class ProductController {
 
     @PostMapping("/newproducts")
     public String addProduct(@RequestBody Map<String, Object> request) {
+        Blob img = null;
         System.out.println("El producto está siendo guardado");
         String type = (String) request.get("type");
         String name = (String) request.get("name");
@@ -87,8 +93,8 @@ public class ProductController {
         boolean pending = (boolean)request.get("pending");
         boolean validation = (boolean)request.get("validation");
         String imgS = (String)request.get("image");
-        byte[] img = Base64.getDecoder().decode(imgS);
-        System.out.println(img);
+        try{img = new SerialBlob(Base64.getDecoder().decode(imgS));}catch (Exception e){e.printStackTrace();}
+
 
 
         service.addProduct(name, price, type, description, pending, validation, user_id, img);
@@ -139,8 +145,22 @@ public class ProductController {
     }
 
     @GetMapping("/image")
-    public byte[] getImage(@RequestBody Map<String, String> request) {
+    public String getImage(@RequestBody Map<String, String> request) {
         String name = request.get("name");
-        return service.getImage(name);
+        String imageString = service.getImage(name);
+
+        try {
+            // Decode the Base64 encoded image string back to bytes
+            byte[] imageBytes = Base64.getDecoder().decode(imageString);
+
+            // Convert the bytes of the image to Base64
+            String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+
+
+            return base64Image;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

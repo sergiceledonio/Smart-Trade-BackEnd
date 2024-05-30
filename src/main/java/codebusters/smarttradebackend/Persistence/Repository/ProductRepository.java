@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,5 +45,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     public List<Product> findValProducts();
 
     @Query("SELECT p.image FROM Product p WHERE LOWER(p.name) LIKE %:nombre%")
-    public byte[] getImageByName(@Param("nombre") String nombre);
+    public Blob getImageByName(@Param("nombre") String nombre);
 }

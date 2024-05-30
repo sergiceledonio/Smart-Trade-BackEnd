@@ -7,10 +7,14 @@ import codebusters.smarttradebackend.Persistence.Repository.ProductRepository;
 import codebusters.smarttradebackend.Persistence.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,7 +79,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id, byte[] image) {
+    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id, Blob image) {
         ProductFactory fact = new ProductFactory();
         Product np2 = fact.createProduct(new String[]{name, Double.toString(price), type, description}, user_id, image);
 
@@ -100,6 +104,7 @@ public class ProductService implements IProductService {
     public List<Product> getPendingProducts(List<Product> products) {
         List<Product> pendingProducts = new ArrayList<Product>();
         for (Product p : products) {
+            System.out.println(p.getImage());
             if (p.getPending()) {
                 pendingProducts.add(p);
             }
@@ -153,7 +158,15 @@ public class ProductService implements IProductService {
             Optional<Product> product = productData.findProductByName(name);
             if(product.isPresent()) {
                 Product p = product.get();
-                p.setImage(image.getBytes());
+                byte[] bytes = image.getBytes();
+                Blob blob = null;
+                try{blob = new javax.sql.rowset.serial.SerialBlob(bytes);}
+                catch(Exception e){
+                    System.out.println("imagen no añadida");
+                    e.printStackTrace();
+                }
+
+                p.setImage(blob);
                 productData.save(p);
             } else {
                 System.out.println("producto no encontrado");
@@ -164,7 +177,20 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public byte[] getImage(String name) {
-        return productData.getImageByName(name);
+    public String getImage(String name) {
+        Blob imageBlob = productData.getImageByName(name);
+
+        try {
+            // Convertir la imagen Blob a un array de bytes
+            byte[] imageBytes = StreamUtils.copyToByteArray(imageBlob.getBinaryStream());
+
+            // Convertir los bytes de la imagen a Base64
+            String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+
+            return base64Image;
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

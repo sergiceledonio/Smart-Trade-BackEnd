@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import java.awt.*;
+import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public interface IProductService {
 
     public List<Product> getToys();
 
-    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id, byte[] image);
+    public Product addProduct(String name, Double price, String type, String description, Boolean pending, Boolean validation, int user_id, Blob image);
 
     public void deleteProduct(Product p);
 
@@ -47,5 +48,5 @@ public interface IProductService {
 
     void addImage(String name, MultipartFile image);
 
-    byte[] getImage(String name);
+    String getImage(String name);
 }
