@@ -19,8 +19,6 @@ public class CardController {
 
     @Autowired
     private CardService service;
-    @Autowired
-    private UserService userController;
     @GetMapping("/cards")
     public List<Card> getCards() {
         return (List<Card>) service.getCards();
@@ -33,8 +31,7 @@ public class CardController {
 
     @GetMapping("/cardsbyuser")
     public List<Card> getCardsByUser(@RequestParam ("user_id") int id) {
-        User user = userController.getUserById(id).get();
-        return (List<Card>) service.getCardByUser(user);
+        return (List<Card>) service.getCardByUser(id);
     }
 
     @PostMapping("/addcard")
@@ -44,8 +41,7 @@ public class CardController {
         String name = (String) cardData.get("name");
         String cvv = (String) cardData.get("cvv");
         String expireDate = (String) cardData.get("expireDate");
-        User user = userController.getUserById(id).get();
-        return (Card) service.addCard(number, name, cvv, expireDate, user);
+        return (Card) service.addCard(number, name, cvv, expireDate, id);
     }
 
 }

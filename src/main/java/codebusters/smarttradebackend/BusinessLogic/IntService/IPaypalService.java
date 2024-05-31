@@ -11,8 +11,8 @@ import java.util.Optional;
 public interface IPaypalService {
 
     public Optional<Paypal> getPaypalById(int id);
-    public List<Paypal> getPaypalByUser(User user);
-    public Paypal addPaypal(String email, String password, User user);
+    public List<Paypal> getPaypalByUser(int user);
+    public Paypal addPaypal(String email, String password, int user);
     public void deletePaypal(Paypal paypal);
 
 }

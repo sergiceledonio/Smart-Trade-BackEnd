@@ -16,8 +16,6 @@ import java.util.*;
 public class PaypalController {
 
     @Autowired
-    private UserService userController;
-    @Autowired
     private PaypalService service;
 
     @GetMapping("/paypalbyid")
@@ -27,8 +25,7 @@ public class PaypalController {
 
     @GetMapping("/paypalsbyuser")
     public List<Paypal> getPaypalsByUser(@RequestParam ("id") int id) {
-        User user = userController.getUserById(id).get();
-        return (List<Paypal>) service.getPaypalByUser(user);
+        return (List<Paypal>) service.getPaypalByUser(id);
     }
 
     @PostMapping("/addPaypal")
@@ -36,8 +33,7 @@ public class PaypalController {
         int id = (int)cardData.get("id");
         String email = (String) cardData.get("email");
         String password = (String) cardData.get("password");
-        User user = userController.getUserById(id).get();
-        return (Paypal) service.addPaypal(email, password, user);
+        return (Paypal) service.addPaypal(email, password, id);
     }
 
 }
