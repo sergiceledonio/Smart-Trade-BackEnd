@@ -22,7 +22,7 @@ public class CardService implements ICardService {
 
     @Override
     public Optional<Card> getCardsById(int id) {return (Optional<Card>) cardData.findById(id);}
-    public List<Card> getCardByUser(int user){return (List<Card>) cardData.findByUser(userData.findById(user).get());};
+    public List<Card> getCardByUser(int user){return (List<Card>) cardData.findByUser(user);};
     public List<Card> getCards(){return (List<Card>) cardData.findAllCards();};
     public Card addCard(String number, String name, String cvv, String expireDate, int user){
         Card c = new Card();

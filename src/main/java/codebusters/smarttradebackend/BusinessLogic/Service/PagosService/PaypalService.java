@@ -22,7 +22,7 @@ public class PaypalService implements IPaypalService{
     private UserRepository userData;
 
     public Optional<Paypal> getPaypalById(int id) {return (Optional<Paypal>) paypalData.findById(id);};
-    public List<Paypal> getPaypalByUser(int user){return (List<Paypal>) paypalData.findByUser(userData.findById(user).get());};
+    public List<Paypal> getPaypalByUser(int user){return (List<Paypal>) paypalData.findByUser(user);};
     public void addPaypal(String email, String password, int user){
         Optional<User> userOptional = userData.findById(user);
         if (userOptional.isPresent()) {

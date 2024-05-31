@@ -12,10 +12,10 @@ import java.util.Optional;
 @Repository
 public interface CardRepository extends JpaRepository<Card, Integer> {
 
-    @Query("select c from Card c where c.user = ?1")
-    public List<Card> findByUser(User user);
+    @Query("select c from Card c where c.user.id = :user")
+    public List<Card> findByUser(int user);
     @Query("SELECT c FROM Card c")
     public List<Card> findAllCards();
-    @Query("SELECT c FROM Card c where c.id = ?1")
+    @Query("SELECT c FROM Card c where c.id = :id")
     public Optional<Card> findById(int id);
 }
