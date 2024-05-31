@@ -21,7 +21,7 @@ public class CardService implements ICardService {
     public Optional<Card> getCardsById(int id) {return (Optional<Card>) cardData.findById(id);}
     public List<Card> getCardByUser(User user){return (List<Card>) cardData.findByUser(user);};
     public List<Card> getCards(){return (List<Card>) cardData.findAllCards();};
-    public Card addCard(String number, String name, String cvv, Date expireDate, User user){
+    public Card addCard(String number, String name, String cvv, String expireDate, User user){
         Card c = new Card();
         try {
             c.setNumber(number);

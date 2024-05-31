@@ -15,27 +15,28 @@ import java.util.*;
 @RequestMapping("/paypal")
 public class PaypalController {
 
-    UserService userController;
+    @Autowired
+    private UserService userController;
     @Autowired
     private PaypalService service;
-    @GetMapping("/paypals")
-    public List<Paypal> getpaypals() {
-        return (List<Paypal>) service.getPaypals();
-    }
 
-    @GetMapping("/Paypalbyid")
-    public Optional<Paypal> getPaypalsById(int id) {
+    @GetMapping("/paypalbyid")
+    public Optional<Paypal> getPaypalsById(@RequestParam ("user_id") int id) {
         return (Optional<Paypal>) service.getPaypalById(id);
     }
 
-    @GetMapping("/Paypalsbyuser")
-    public List<Paypal> getPaypalsByUser(int id) {
+    @GetMapping("/paypalsbyuser")
+    public List<Paypal> getPaypalsByUser(@RequestParam ("id") int id) {
         User user = userController.getUserById(id).get();
         return (List<Paypal>) service.getPaypalByUser(user);
     }
 
-    @GetMapping("/addPaypal")
-    public Paypal addPaypal(String number, String email, String password, User user) {
+    @PostMapping("/addPaypal")
+    public Paypal addPaypal(@RequestBody Map<String, Object> cardData) {
+        int id = (int)cardData.get("id");
+        String email = (String) cardData.get("email");
+        String password = (String) cardData.get("password");
+        User user = userController.getUserById(id).get();
         return (Paypal) service.addPaypal(email, password, user);
     }
 

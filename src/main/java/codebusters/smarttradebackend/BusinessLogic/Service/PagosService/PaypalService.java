@@ -20,7 +20,6 @@ public class PaypalService implements IPaypalService{
 
     public Optional<Paypal> getPaypalById(int id) {return (Optional<Paypal>) paypalData.findById(id);};
     public List<Paypal> getPaypalByUser(User user){return (List<Paypal>) paypalData.findByUser(user);};
-    public List<Paypal> getPaypals(){return (List<Paypal>) paypalData.findAllPaypals();};
     public Paypal addPaypal(String email, String password, User user){
         Paypal p = new Paypal();
         try {

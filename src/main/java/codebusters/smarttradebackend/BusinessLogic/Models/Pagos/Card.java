@@ -17,13 +17,13 @@ public class Card {
     @Column(name = "cvv")
     private String cvv;
     @Column(name = "expireDate")
-    private Date expireDate;
+    private String expireDate;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     public Card(){};
-    public Card(String number, String name, String cvv, Date expireDate, User user)
+    public Card(String number, String name, String cvv, String expireDate, User user)
     {
         this.number = number;
         this.name = name;
@@ -43,7 +43,7 @@ public class Card {
     public String getCvv() {
         return this.cvv;
     }
-    public Date getExpireDate() {
+    public String getExpireDate() {
         return this.expireDate;
     }
     public User getUser() {
@@ -66,7 +66,7 @@ public class Card {
         this.cvv = cvv;
     }
 
-    public void setExpireDate(Date expireDate) {
+    public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
     }
 
