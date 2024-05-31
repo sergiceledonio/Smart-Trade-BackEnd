@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PaypalRepository extends JpaRepository<User, Integer> {
+public interface PaypalRepository extends JpaRepository<Paypal, Integer> {
 
     @Query("select c from Card c where c.user = ?1")
     public List<Paypal> findByUser(User user);

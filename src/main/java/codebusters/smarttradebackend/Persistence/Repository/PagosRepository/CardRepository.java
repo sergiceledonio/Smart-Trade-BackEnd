@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CardRepository extends JpaRepository<User, Integer> {
+public interface CardRepository extends JpaRepository<Card, Integer> {
 
     @Query("select c from Card c where c.user = ?1")
     public List<Card> findByUser(User user);

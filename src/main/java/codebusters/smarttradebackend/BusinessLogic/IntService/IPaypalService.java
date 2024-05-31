@@ -12,7 +12,6 @@ public interface IPaypalService {
 
     public Optional<Paypal> getPaypalById(int id);
     public List<Paypal> getPaypalByUser(int user);
-    public Paypal addPaypal(String email, String password, int user);
-    public void deletePaypal(Paypal paypal);
+    public void addPaypal(String email, String password, int user);
 
 }

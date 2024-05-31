@@ -32,6 +32,7 @@ public class CardService implements ICardService {
             c.setCvv(cvv);
             c.setExpireDate(expireDate);
             c.setUser(userData.findById(user).get());
+            cardData.save(c);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

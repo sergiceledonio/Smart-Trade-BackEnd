@@ -29,11 +29,11 @@ public class PaypalController {
     }
 
     @PostMapping("/addPaypal")
-    public Paypal addPaypal(@RequestBody Map<String, Object> cardData) {
+    public void addPaypal(@RequestBody Map<String, Object> cardData) {
         int id = (int)cardData.get("id");
         String email = (String) cardData.get("email");
         String password = (String) cardData.get("password");
-        return (Paypal) service.addPaypal(email, password, id);
+        service.addPaypal(email, password, id);
     }
 
 }
