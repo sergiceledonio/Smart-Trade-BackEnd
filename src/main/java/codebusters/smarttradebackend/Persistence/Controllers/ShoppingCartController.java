@@ -49,6 +49,12 @@ public class ShoppingCartController {
         }
     }
 
+    @PostMapping("/deleteCart")
+    public void deleteCart(@RequestBody Map<String, Integer> request ) {
+        int u_id = request.get("u_id");
+        shoppingService.deleteByUserId(u_id);
+    }
+
     @PostMapping("/delete")
     public void deleteCartProduct(@RequestBody Map<String, Object> request) {
         String p_name = (String) request.get("p_name");
