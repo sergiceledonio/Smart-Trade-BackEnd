@@ -68,6 +68,12 @@ public class ShoppingService implements IShoppingService {
     }
 
     @Override
+    public void deleteByUserId(int u_id) {
+        Optional<ShoppingCart> deleted = scdata.findByUserId(u_id);
+        scdata.deleteById(deleted.get().getId());
+    }
+
+    @Override
     public void changeAmount(int n, int p_id, int u_id) {
         Optional<ShoppingCart> sp = scdata.findByUserId(u_id);
         CartProduct cartProduct = spdata.findByProduct(p_id, sp.get().getId());
