@@ -1,8 +1,13 @@
 package codebusters.smarttradebackend.Persistence.Controllers;
 
 
+import codebusters.smarttradebackend.BusinessLogic.IntService.Command.ICommand;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Service.Product.ProductService;
+import codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart.AddToCartCommand;
+import codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart.CommandExecutorCart;
+import codebusters.smarttradebackend.BusinessLogic.Service.WishList.AddToWishCommand;
+import codebusters.smarttradebackend.BusinessLogic.Service.WishList.CommandExecutorWish;
 import codebusters.smarttradebackend.BusinessLogic.Service.WishList.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +24,8 @@ public class WishListController {
     private WishListService service;
     @Autowired
     private ProductService pService;
+    @Autowired
+    private CommandExecutorWish commandExecutor;
 
     @GetMapping("/wishList")
     public List<Product> getWishList(@RequestParam("user_id") int user_id) {
@@ -33,7 +40,8 @@ public class WishListController {
         Optional<Product> productOptional = pService.getProductById(p_id);
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
-            return service.addWishedProduct(user_id, p_id);
+            ICommand addToWishCommand = new AddToWishCommand(user_id, product, service);
+            return commandExecutor.executeCommand(addToWishCommand);
 
         }
         return -1;

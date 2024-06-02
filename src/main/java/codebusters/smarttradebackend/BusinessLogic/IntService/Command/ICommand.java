@@ -1,5 +1,5 @@
 package codebusters.smarttradebackend.BusinessLogic.IntService.Command;
 
-public interface ShoppingCartCommand {
+public interface ICommand {
     int execute();
 }

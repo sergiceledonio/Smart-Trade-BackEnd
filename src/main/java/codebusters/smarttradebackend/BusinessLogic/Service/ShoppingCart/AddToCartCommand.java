@@ -1,9 +1,9 @@
 package codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart;
 
-import codebusters.smarttradebackend.BusinessLogic.IntService.Command.ShoppingCartCommand;
+import codebusters.smarttradebackend.BusinessLogic.IntService.Command.ICommand;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 
-public class AddToCartCommand implements ShoppingCartCommand {
+public class AddToCartCommand implements ICommand {
     private int userId;
     private Product product;
     private int quantity;

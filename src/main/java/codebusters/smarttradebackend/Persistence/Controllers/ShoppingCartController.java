@@ -1,13 +1,14 @@
 package codebusters.smarttradebackend.Persistence.Controllers;
 
-import codebusters.smarttradebackend.BusinessLogic.IntService.Command.ShoppingCartCommand;
+import codebusters.smarttradebackend.BusinessLogic.IntService.Command.ICommand;
 import codebusters.smarttradebackend.BusinessLogic.Models.Products.Product;
 import codebusters.smarttradebackend.BusinessLogic.Service.Product.ProductService;
 import codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart.AddToCartCommand;
+import codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart.CommandExecutorCart;
 import codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart.ShoppingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart.CommandExecutor;
+import codebusters.smarttradebackend.BusinessLogic.Service.ShoppingCart.CommandExecutorCart;
 
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class ShoppingCartController {
     @Autowired
     private ProductService productService;
     @Autowired
-    private CommandExecutor commandExecutor;
+    private CommandExecutorCart commandExecutor;
 
     @GetMapping("/cartProducts")
     public List<Product> getShoppingProducts(@RequestParam("user_id") int userId) {
@@ -42,7 +43,7 @@ public class ShoppingCartController {
         Optional<Product> productOptional = productService.getProductById(productId);
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
-            ShoppingCartCommand addToCartCommand = new AddToCartCommand(userId, product, amount, shoppingService);
+            ICommand addToCartCommand = new AddToCartCommand(userId, product, amount, shoppingService);
             return commandExecutor.executeCommand(addToCartCommand);
         } else {
             return -1;
