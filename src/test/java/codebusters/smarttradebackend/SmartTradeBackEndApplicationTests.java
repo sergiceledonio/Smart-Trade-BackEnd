@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class SmartTradeBackEndApplicationTests {
@@ -73,26 +73,21 @@ class SmartTradeBackEndApplicationTests {
         wishList = new WishList(user);
         when(wlrepo.findByUserId(1)).thenReturn(Optional.of(wishList));
         int result1 = wldata.addWishedProduct(1, 1);
+
         assertEquals(1, result1);
    }
-   @Test
-   @DisplayName("TEST 3")
-   void test3(){
-       user = new User();
-       product = new Product();
-       wishList = new WishList(user);
-       wishProduct = new WishProduct(wishList, product);
+    @Test
+    @DisplayName("TEST 3")
+    //Delete product
+    void test3(){
 
-       when(udata.findById(1)).thenReturn(Optional.of(user));
-       when(pdata.findById(1)).thenReturn(Optional.of(product));
-       when(wlrepo.findByUserId(1)).thenReturn(Optional.of(wishList));
-       when(wpdata.findByProduct(product.getId(), wishList.getId())).thenReturn((wishProduct));
+        when(udata.findById(1)).thenReturn(Optional.of(user));
+        when(pdata.findProductByName("product_name")).thenReturn(Optional.of(product));
+        when(wlrepo.findByUserId(1)).thenReturn(Optional.of(wishList));
+        when(wpdata.findByProduct(product.getId(), wishList.getId())).thenReturn(wishProduct);
 
-       int result = wldata.addWishedProduct(1, 1);
+        wldata.delete(1, "product_name");
 
-       assertEquals(-1, result);
-   }
-
-
-
+        verify(wpdata, times(1)).deleteById(wishProduct.getId());
+    }
 }
