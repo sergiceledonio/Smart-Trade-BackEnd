@@ -44,6 +44,7 @@ public class WishListService implements IWishListService {
         if(wl.isPresent()) {
             Optional<Product> p = pdata.findById(product_id);
             List<WishProduct> wishProducts = wldata.getWishedProductsById(wl.get().getId());
+            System.out.println("El tamaño de la lista es: " + wishProducts.size());
             for(int i = 0; i < wishProducts.size(); i++) {
                 System.out.println(wishProducts.get(i).getProductWished().getId() == product_id);
                 if(wishProducts.get(i).getProductWished().getId() == product_id) {
